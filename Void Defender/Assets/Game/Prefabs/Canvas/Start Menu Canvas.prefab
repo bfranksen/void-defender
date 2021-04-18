@@ -1517,7 +1517,7 @@ GameObject:
   - component: {fileID: 3207362578051092437}
   - component: {fileID: 3207362578051092438}
   m_Layer: 5
-  m_Name: Quit Button
+  m_Name: Exit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: EXIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e46c2a814c606d42951d3b8ac750ffb, type: 2}
   m_sharedMaterial: {fileID: 4448758487617016555, guid: 7e46c2a814c606d42951d3b8ac750ffb,
