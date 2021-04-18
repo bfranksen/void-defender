@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da997401f5225a4eb907322d8837a55, type: 3}
+  m_Name: Enemy Laser Normal
+  m_EditorClassIdentifier: 
+  weaponType: 2
+  projectilePrefab: {fileID: 1667952745024342093, guid: 3bbce39cde25fb240afc1222cb306edc,
+    type: 3}
+  projectileSpeed: 4
+  minTimeBetweenShots: 0.5
+  maxTimeBetweenShots: 3.5
+  sfxClip: {fileID: 8300000, guid: abfd3f909707ed4448ae546772311b47, type: 3}
+  sfxVolume: 0.15

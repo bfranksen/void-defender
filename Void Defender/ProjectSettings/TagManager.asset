@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Spawn
+  - PU-Damage
+  - PU-Life
+  - PU-Points
+  - PU-Repair
+  - PU-Shield
+  - PU-Zap
+  - Spawned
+  - BuffIcon
+  - BuffContainer
+  - Jacks
+  - Bomb
+  - BounceUp
+  - BounceDown
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Enemy
+  - Player Projectile
+  - Enemy Projectile
+  - Power-Up
+  - Boss
+  - Shield
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Projectiles
+    uniqueID: 2160984841
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0

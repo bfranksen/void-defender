@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 346eb9168ef5ca748b2c321053e7b50c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shieldUpSFX: {fileID: 8300000, guid: 4a905181c0dd41f47b15bde4874ed5d8, type: 3}
+  - shieldDownSFX: {fileID: 8300000, guid: 758e37f76d694154cb986bc92a10ff4c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
