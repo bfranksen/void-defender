@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField] [Range(0, 1)] float bossWaveSFXVolume = 0.25f;
 
     private int waveCounter = 0;
+    public static int loopCounter = 1;
     public static float gameModifier = 0f;
     public static int takeawayScoreScaling = 0;
 
@@ -22,6 +23,7 @@ public class EnemySpawner : MonoBehaviour {
         ShuffleWave(waveConfigs);
         do {
             yield return StartCoroutine(SpawnAllWaves());
+            loopCounter++;
         } while (looping);
     }
 

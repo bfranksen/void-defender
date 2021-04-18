@@ -34,4 +34,8 @@ public class Level : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("Game Over");
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
 }

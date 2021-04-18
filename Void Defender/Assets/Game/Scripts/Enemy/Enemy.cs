@@ -84,10 +84,11 @@ public class Enemy : MonoBehaviour {
     }
 
     private void ProcessDeath() {
+        int baseScore = scoreValue * EnemySpawner.loopCounter;
         if (player.PuPoints) {
-            FindObjectOfType<GameSession>().Score += scoreValue * PowerUp.pointMod;
+            FindObjectOfType<GameSession>().Score += baseScore * PowerUp.pointMod;
         } else {
-            FindObjectOfType<GameSession>().Score += scoreValue;
+            FindObjectOfType<GameSession>().Score += baseScore;
         }
         if (tag == "Spawn") SpawnChildren();
         if (tag != "Spawned") CheckForPowerUp(0);

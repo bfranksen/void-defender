@@ -10,6 +10,9 @@ public class MusicPlayer : MonoBehaviour {
     [SerializeField] float musicVolume = 0.5f;
     [SerializeField] float sfxVolume = 0.75f;
 
+    public static string MUSIC_VOLUME_KEY = "musicVol";
+    public static string SFX_VOLUME_KEY = "sfxVol";
+
     private Vector3 cameraPos;
 
     public float GlobalVolume { get => globalVolume; set => globalVolume = value; }
@@ -27,12 +30,20 @@ public class MusicPlayer : MonoBehaviour {
             // Application.targetFrameRate = 144;
             // QualitySettings.vSyncCount = 0;
             cameraPos = Camera.main.transform.position;
+            if (PlayerPrefs.HasKey(MUSIC_VOLUME_KEY)) {
+                musicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY);
+            }
+            if (PlayerPrefs.HasKey(SFX_VOLUME_KEY)) {
+                sfxVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
+            }
             AdjustMusicVolume();
             DontDestroyOnLoad(gameObject);
         }
     }
 
     public void AdjustMusicVolume() {
+        PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
+        PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxVolume);
         GetComponent<AudioSource>().volume = musicVolume * GlobalVolume;
     }
 

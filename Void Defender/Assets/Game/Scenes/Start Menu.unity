@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1423899223}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1020380578
@@ -394,12 +394,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1423899223 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3207362577651131703, guid: 1351dabc5d2ed0f4bb14ea34ea7d8d79,
+--- !u!114 &1359250873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6277432064291236381, guid: d66dda8151b320644bb4d57c7edcfe22,
     type: 3}
-  m_PrefabInstance: {fileID: 2052255989}
+  m_PrefabInstance: {fileID: 1426512635}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d2db9e8e0a8b40a93b73df9156873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1426512635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -545,6 +551,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3207362578051092438, guid: 1351dabc5d2ed0f4bb14ea34ea7d8d79,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1359250873}
     - target: {fileID: 6790425295452495399, guid: 1351dabc5d2ed0f4bb14ea34ea7d8d79,
         type: 3}
       propertyPath: m_Pivot.x

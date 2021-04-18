@@ -3490,6 +3490,7 @@ GameObject:
   - component: {fileID: 6272556022318879982}
   - component: {fileID: 6272556022318879985}
   - component: {fileID: 6272556022318879984}
+  - component: {fileID: 8200362068995050666}
   m_Layer: 5
   m_Name: Game Manual 1 Canvas
   m_TagString: Untagged
@@ -3582,6 +3583,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8200362068995050666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272556022318879987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24a548516bb07c428f38a000a951f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstButton: {fileID: 1720957922934410824}
+  previousPageButton: {fileID: 2716269711759175679}
 --- !u!1 &6492417575954312805
 GameObject:
   m_ObjectHideFlags: 0
