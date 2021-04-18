@@ -27,8 +27,6 @@ public class MusicPlayer : MonoBehaviour {
         if (FindObjectsOfType<MusicPlayer>().Length > 1) {
             Destroy(gameObject);
         } else {
-            // Application.targetFrameRate = 144;
-            // QualitySettings.vSyncCount = 0;
             cameraPos = Camera.main.transform.position;
             if (PlayerPrefs.HasKey(MUSIC_VOLUME_KEY)) {
                 musicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY);

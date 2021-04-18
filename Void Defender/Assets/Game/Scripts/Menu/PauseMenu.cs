@@ -43,6 +43,19 @@ public class PauseMenu : MonoBehaviour {
         if (musicPlayer.MusicVolume != musicVolumeSlider.value || musicPlayer.SfxVolume != sfxVolumeSlider.value) {
             UpdateVolume();
         }
+        ResetCurrentSelected();
+        HandleOpenCloseFromInput();
+    }
+
+    private void ResetCurrentSelected() {
+        if (optionsMenu.activeInHierarchy && !EventSystem.current.currentSelectedGameObject && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))) {
+            EventSystem.current.SetSelectedGameObject(optionsFirstButton);
+        } else if (!EventSystem.current.currentSelectedGameObject && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))) {
+            EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        }
+    }
+
+    private void HandleOpenCloseFromInput() {
         if (!optionsMenu.activeInHierarchy && (Input.GetButtonDown("Pause") || (pauseMenu.activeInHierarchy && Input.GetButtonDown("Cancel")))) {
             PauseUnpause();
         } else if (optionsMenu.activeInHierarchy && (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))) {

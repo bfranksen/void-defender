@@ -35,18 +35,30 @@ public class MainMenu : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+        VolumeSliderControl();
+        ResetCurrentSelected();
+    }
+
+    private void VolumeSliderControl() {
         if (delayLeft > 0) {
             delayLeft -= Time.deltaTime;
         }
         if (delayLeft <= 0) {
             AdjustVolume(true);
-            if (sliderContainer.activeInHierarchy && Input.GetButtonDown("Fire1")) {
+            if (sliderContainer.activeInHierarchy && (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Return))) {
                 initialMusicVolume = volumeSlider.value;
                 ShowHideSlider();
             } else if (sliderContainer.activeInHierarchy && Input.GetButtonDown("Cancel")) {
                 ShowHideSlider();
                 AdjustVolume(false);
             }
+        }
+    }
+
+    private void ResetCurrentSelected() {
+        if (!EventSystem.current.currentSelectedGameObject &&
+            (Input.GetButtonDown("Vertical") || Input.GetButtonDown("Horizontal"))) {
+            EventSystem.current.SetSelectedGameObject(startButton);
         }
     }
 

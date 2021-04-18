@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ManualMenu : MonoBehaviour {
+public class GameOverMenu : MonoBehaviour {
 
     [Header("Buttons")]
     [SerializeField] GameObject firstButton;
-    [SerializeField] GameObject previousPageButton;
 
     // Start is called before the first frame update
     private void Start() {
@@ -25,9 +24,6 @@ public class ManualMenu : MonoBehaviour {
         if (!EventSystem.current.currentSelectedGameObject &&
             (Input.GetButtonDown("Vertical") || Input.GetButtonDown("Horizontal"))) {
             EventSystem.current.SetSelectedGameObject(firstButton);
-        }
-        if (Input.GetButtonDown("Cancel")) {
-            previousPageButton.GetComponent<Button>().onClick.Invoke();
         }
     }
 }
