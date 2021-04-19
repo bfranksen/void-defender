@@ -40,9 +40,12 @@ public class MusicPlayer : MonoBehaviour {
     }
 
     public void AdjustMusicVolume() {
+        GetComponent<AudioSource>().volume = musicVolume * GlobalVolume;
+    }
+
+    public void SavePlayerPrefs() {
         PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxVolume);
-        GetComponent<AudioSource>().volume = musicVolume * GlobalVolume;
     }
 
     public void PlayOneShot(AudioClip clip, float volume) {

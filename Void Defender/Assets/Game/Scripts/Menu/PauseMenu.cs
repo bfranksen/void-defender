@@ -27,7 +27,6 @@ public class PauseMenu : MonoBehaviour {
     MusicPlayer musicPlayer;
     float initialMusicVolume;
     float initialSfxVolume;
-    bool keepInitialVolume;
 
     // Called before the first update
     private void Start() {
@@ -40,9 +39,6 @@ public class PauseMenu : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        if (musicPlayer.MusicVolume != musicVolumeSlider.value || musicPlayer.SfxVolume != sfxVolumeSlider.value) {
-            UpdateVolume();
-        }
         ResetCurrentSelected();
         HandleOpenCloseFromInput();
     }
@@ -87,38 +83,49 @@ public class PauseMenu : MonoBehaviour {
     public void OpenOptionsMenu() {
         initialMusicVolume = musicPlayer.MusicVolume;
         initialSfxVolume = musicPlayer.SfxVolume;
-        keepInitialVolume = false;
         optionsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsFirstButton);
     }
 
     public void CloseOptionsMenu() {
-        UpdateVolume();
         optionsMenu.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsClosedButton);
     }
 
     public void ConfirmOptions() {
+        SaveVolumeChanges(true);
         CloseOptionsMenu();
     }
 
     public void CancelOptions() {
-        keepInitialVolume = true;
+        SaveVolumeChanges(false);
         CloseOptionsMenu();
-    }
-
-    private void UpdateVolume() {
-        musicPlayer.MusicVolume = keepInitialVolume ? initialMusicVolume : musicVolumeSlider.value / 10f;
-        musicPlayer.SfxVolume = keepInitialVolume ? initialSfxVolume : sfxVolumeSlider.value / 10f;
-        musicPlayer.AdjustMusicVolume();
-        musicVolumeSlider.value = musicPlayer.MusicVolume * 10f;
-        sfxVolumeSlider.value = musicPlayer.SfxVolume * 10f;
     }
 
     public void QuitGame() {
         PauseUnpause();
         FindObjectOfType<Level>().LoadStartMenu();
+    }
+
+    public void AdjustVolumeFromSliderChange(Slider slider) {
+        if (slider == musicVolumeSlider) {
+            musicPlayer.MusicVolume = musicVolumeSlider.value / 10f;
+        } else if (slider == sfxVolumeSlider) {
+            musicPlayer.SfxVolume = sfxVolumeSlider.value / 10f;
+        }
+        musicPlayer.AdjustMusicVolume();
+    }
+
+    private void SaveVolumeChanges(bool saveChanges) {
+        if (!saveChanges) {
+            musicVolumeSlider.value = initialMusicVolume * 10f;
+            sfxVolumeSlider.value = initialSfxVolume * 10f;
+            musicPlayer.MusicVolume = initialMusicVolume;
+            musicPlayer.SfxVolume = initialSfxVolume;
+            musicPlayer.AdjustMusicVolume();
+        }
+        musicPlayer.SavePlayerPrefs();
     }
 }

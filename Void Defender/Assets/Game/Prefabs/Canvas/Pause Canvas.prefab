@@ -88,7 +88,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8202518071983680897}
+        m_MethodName: AdjustVolumeFromSliderChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 484962085497870347}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &484962085595938982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,7 +2647,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8202518071983680897}
+        m_MethodName: AdjustVolumeFromSliderChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 484962087252288226}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &484962087294511683
 GameObject:
   m_ObjectHideFlags: 0

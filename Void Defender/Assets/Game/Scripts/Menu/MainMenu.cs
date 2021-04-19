@@ -44,13 +44,13 @@ public class MainMenu : MonoBehaviour {
             delayLeft -= Time.deltaTime;
         }
         if (delayLeft <= 0) {
-            AdjustVolume(true);
             if (sliderContainer.activeInHierarchy && (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Return))) {
                 initialMusicVolume = volumeSlider.value;
+                SaveVolumeChanges(true);
                 ShowHideSlider();
             } else if (sliderContainer.activeInHierarchy && Input.GetButtonDown("Cancel")) {
+                SaveVolumeChanges(false);
                 ShowHideSlider();
-                AdjustVolume(false);
             }
         }
     }
@@ -62,14 +62,17 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    private void AdjustVolume(bool saveChanges) {
-        if (saveChanges) {
-            musicPlayer.MusicVolume = volumeSlider.value;
-            musicPlayer.AdjustMusicVolume();
-        } else {
+    public void AdjustVolume() {
+        musicPlayer.MusicVolume = volumeSlider.value;
+        musicPlayer.AdjustMusicVolume();
+    }
+
+    private void SaveVolumeChanges(bool saveChanges) {
+        if (!saveChanges) {
             volumeSlider.value = initialMusicVolume;
-            PlayerPrefs.SetFloat(MusicPlayer.MUSIC_VOLUME_KEY, initialMusicVolume);
+            AdjustVolume();
         }
+        musicPlayer.SavePlayerPrefs();
     }
 
     public void ShowHideSlider() {
