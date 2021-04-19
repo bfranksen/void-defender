@@ -12,8 +12,13 @@ public class MainMenu : MonoBehaviour {
 
     [Header("Buttons")]
     [SerializeField] GameObject startButton;
-    [SerializeField] GameObject quitButton;
+    [SerializeField] GameObject beforeExitButton;
+    [SerializeField] GameObject exitButton;
     [SerializeField] GameObject mvButton;
+
+    GameObject recentSelectedObject;
+    GameObject lastSelectedObject;
+    float buttonScale = 0.8f;
 
     MusicPlayer musicPlayer;
     float initialMusicVolume;
@@ -22,6 +27,11 @@ public class MainMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
+#if UNITY_STANDALONE
+        ReconfigureButtonNav(false);
+#else
+        ReconfigureButtonNav(true);
+#endif
         musicPlayer = FindObjectOfType<MusicPlayer>();
         volumeSlider.value = musicPlayer.MusicVolume;
         initialMusicVolume = musicPlayer.MusicVolume;
@@ -35,8 +45,51 @@ public class MainMenu : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        VolumeSliderControl();
         ResetCurrentSelected();
+        VolumeSliderControl();
+    }
+
+    private void ReconfigureButtonNav(bool reconfigure) {
+        Debug.Log(reconfigure ? "Reconfiguring" : "Not Reconfiguring");
+        exitButton.SetActive(!reconfigure);
+        if (reconfigure) {
+            Button btn = beforeExitButton.GetComponent<Button>();
+            Navigation nav = new Navigation();
+            nav.mode = Navigation.Mode.Explicit;
+            nav.selectOnUp = btn.FindSelectableOnUp();
+            nav.selectOnDown = mvButton.GetComponent<Button>();
+            btn.navigation = nav;
+
+            btn = mvButton.GetComponent<Button>();
+            nav = new Navigation();
+            nav.mode = Navigation.Mode.Explicit;
+            nav.selectOnUp = beforeExitButton.GetComponent<Button>();
+            nav.selectOnDown = btn.FindSelectableOnDown();
+            btn.navigation = nav;
+        }
+    }
+
+    private void ResetCurrentSelected() {
+        if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
+            lastSelectedObject = recentSelectedObject;
+            recentSelectedObject = EventSystem.current.currentSelectedGameObject;
+        }
+        if (!EventSystem.current.currentSelectedGameObject) {
+            EventSystem.current.SetSelectedGameObject(lastSelectedObject);
+        }
+        EnableAnimator();
+    }
+
+    private void EnableAnimator() {
+        GameObject lastObj = lastSelectedObject;
+        if (lastObj && lastObj.GetComponent<Animator>()) {
+            lastObj.GetComponent<Animator>().enabled = false;
+            lastObj.transform.localScale = new Vector3(buttonScale, buttonScale, 0);
+        }
+        GameObject currentObj = EventSystem.current.currentSelectedGameObject;
+        if (currentObj && currentObj.GetComponent<Animator>()) {
+            currentObj.GetComponent<Animator>().enabled = true;
+        }
     }
 
     private void VolumeSliderControl() {
@@ -55,16 +108,11 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    private void ResetCurrentSelected() {
-        if (!EventSystem.current.currentSelectedGameObject &&
-            (Input.GetButtonDown("Vertical") || Input.GetButtonDown("Horizontal"))) {
-            EventSystem.current.SetSelectedGameObject(startButton);
-        }
-    }
-
     public void AdjustVolume() {
-        musicPlayer.MusicVolume = volumeSlider.value;
-        musicPlayer.AdjustMusicVolume();
+        if (musicPlayer) {
+            musicPlayer.MusicVolume = volumeSlider.value;
+            musicPlayer.AdjustMusicVolume();
+        }
     }
 
     private void SaveVolumeChanges(bool saveChanges) {
@@ -98,7 +146,11 @@ public class MainMenu : MonoBehaviour {
 
     private Navigation Hide(Navigation nav) {
         sliderContainer.SetActive(false);
-        nav.selectOnUp = quitButton.GetComponent<Button>();
+#if UNITY_STANDALONE
+        nav.selectOnUp = exitButton.GetComponent<Button>();
+#else
+        nav.selectOnUp = beforeExitButton.GetComponent<Button>();
+#endif
         nav.selectOnDown = startButton.GetComponent<Button>();
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mvButton);

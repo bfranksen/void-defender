@@ -23,6 +23,9 @@ public class PauseMenu : MonoBehaviour {
     [Header("Utils")]
     [SerializeField] GameObject shade;
 
+    GameObject recentSelectedObject;
+    GameObject lastSelectedObject;
+
     // General
     MusicPlayer musicPlayer;
     float initialMusicVolume;
@@ -44,10 +47,12 @@ public class PauseMenu : MonoBehaviour {
     }
 
     private void ResetCurrentSelected() {
-        if (optionsMenu.activeInHierarchy && !EventSystem.current.currentSelectedGameObject && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))) {
-            EventSystem.current.SetSelectedGameObject(optionsFirstButton);
-        } else if (!EventSystem.current.currentSelectedGameObject && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))) {
-            EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
+            lastSelectedObject = recentSelectedObject;
+            recentSelectedObject = EventSystem.current.currentSelectedGameObject;
+        }
+        if (!EventSystem.current.currentSelectedGameObject) {
+            EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
     }
 

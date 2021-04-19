@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 1210618043}
   - component: {fileID: 1210618042}
   - component: {fileID: 1210618041}
+  - component: {fileID: 5379063229588953021}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -334,7 +335,7 @@ RectTransform:
   m_GameObject: {fileID: 1210618039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 8268248899008889160}
   m_RootOrder: 3
@@ -342,7 +343,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -371}
-  m_SizeDelta: {x: 720, y: 156}
+  m_SizeDelta: {x: 1080, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1210618043
 CanvasRenderer:
@@ -401,10 +402,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 104.65
-  m_fontSizeBase: 36
+  m_fontSize: 132
+  m_fontSizeBase: 132
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 92
   m_fontSizeMax: 256
   m_fontStyle: 0
@@ -497,6 +498,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!95 &5379063229588953021
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210618039}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c897652cb3e871e46a888ca1f51bb579, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1349761624
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +529,7 @@ GameObject:
   - component: {fileID: 1349761628}
   - component: {fileID: 1349761627}
   - component: {fileID: 1349761626}
+  - component: {fileID: 2867919760705899594}
   m_Layer: 5
   m_Name: Play Again Button
   m_TagString: Untagged
@@ -525,7 +546,7 @@ RectTransform:
   m_GameObject: {fileID: 1349761624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 8268248899008889160}
   m_RootOrder: 2
@@ -533,7 +554,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -212}
-  m_SizeDelta: {x: 980, y: 228}
+  m_SizeDelta: {x: 1080, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1349761628
 CanvasRenderer:
@@ -592,10 +613,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 135.35
-  m_fontSizeBase: 36
+  m_fontSize: 132
+  m_fontSizeBase: 132
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 92
   m_fontSizeMax: 256
   m_fontStyle: 0
@@ -688,6 +709,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!95 &2867919760705899594
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349761624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c897652cb3e871e46a888ca1f51bb579, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1394578006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,4 +1112,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstButton: {fileID: 1349761624}
-  returnToMenuButton: {fileID: 1210618039}
