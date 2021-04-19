@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class MainMenu : MonoBehaviour {
 
@@ -31,22 +32,21 @@ public class MainMenu : MonoBehaviour {
         ReconfigureButtonNav(false);
 #else
         ReconfigureButtonNav(true);
+        RepositionVolumeContainer();
 #endif
-        musicPlayer = FindObjectOfType<MusicPlayer>();
-        volumeSlider.value = musicPlayer.MusicVolume;
-        initialMusicVolume = musicPlayer.MusicVolume;
-        if (Input.GetJoystickNames().Length > 0) {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(startButton);
-        } else {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        InitialVolumeSettings();
+        SetCurrentObject();
     }
 
     // Update is called once per frame
     private void Update() {
         ResetCurrentSelected();
         VolumeSliderControl();
+    }
+
+    private void RepositionVolumeContainer() {
+        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(-32, -32, 0));
+        mvButton.transform.parent.gameObject.transform.localScale = new Vector2(2f, 2f);
     }
 
     private void ReconfigureButtonNav(bool reconfigure) {
@@ -69,7 +69,26 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    private void InitialVolumeSettings() {
+        musicPlayer = FindObjectOfType<MusicPlayer>();
+        volumeSlider.value = musicPlayer.MusicVolume;
+        initialMusicVolume = musicPlayer.MusicVolume;
+    }
+
+    private void SetCurrentObject() {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(startButton);
+        GameObject go = EventSystem.current.currentSelectedGameObject;
+        go.GetComponent<Animator>().enabled = true;
+        
+        TextMeshPro tmp = go.GetComponent<TextMeshPro>();
+        if (tmp) {
+            tmp.color = new Color32(255, 143, 0, 255);
+        }
+    }
+
     private void ResetCurrentSelected() {
+#if UNITY_STANDALONE
         if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
             lastSelectedObject = recentSelectedObject;
             recentSelectedObject = EventSystem.current.currentSelectedGameObject;
@@ -78,6 +97,7 @@ public class MainMenu : MonoBehaviour {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
         EnableAnimator();
+#endif
     }
 
     private void EnableAnimator() {
