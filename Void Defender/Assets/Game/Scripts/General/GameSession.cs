@@ -19,8 +19,10 @@ public class GameSession : MonoBehaviour {
     }
 
     private void SetUpSingleton() {
+#if !UNITY_WEBGL
         Application.targetFrameRate = 144;
         QualitySettings.vSyncCount = 0;
+#endif
         if (_instance != null && _instance != this) {
             Destroy(gameObject);
         } else {
@@ -33,7 +35,6 @@ public class GameSession : MonoBehaviour {
         health = 200;
         lives = 2;
         score = 0;
-        // Destroy(gameObject);
     }
 
     public int Health { get => health; set => health = value; }
