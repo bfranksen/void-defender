@@ -16,6 +16,8 @@ public class GameSession : MonoBehaviour {
     // Start is called before the first frame update
     private void Awake() {
         SetUpSingleton();
+        ResourceRequest request = Resources.LoadAsync("Build", typeof(BuildScriptableObject));
+        request.completed += Request_completed;
     }
 
     private void SetUpSingleton() {
@@ -40,4 +42,14 @@ public class GameSession : MonoBehaviour {
     public int Health { get => health; set => health = value; }
     public int Lives { get => lives; set => lives = value; }
     public int Score { get => score; set => score = value; }
+
+    private void Request_completed(AsyncOperation obj) {
+        BuildScriptableObject buildScriptableObject = ((ResourceRequest)obj).asset as BuildScriptableObject;
+
+        if (buildScriptableObject == null) {
+            Debug.LogError("Build scriptable object not found in resources directory! Check build log for errors!");
+        } else {
+            Debug.Log($"Build: {Application.version}.{buildScriptableObject.BuildNumber}");
+        }
+    }
 }

@@ -63,6 +63,12 @@ public class Player : MonoBehaviour {
     float yMin;
     float yMax;
 
+    // Touch movement
+#if UNITY_ANDROID || UNITY_IOS
+    private float width;
+    private float height;
+#endif
+
     // Get: Set:
     public bool PuDamage { get => puDamage; set => puDamage = value; }
     public bool PuPoints { get => puPoints; set => puPoints = value; }
@@ -80,6 +86,9 @@ public class Player : MonoBehaviour {
     // ---------------------------------------------------------------------------------------------------------------------------
 
     private void Start() {
+        Debug.Log("Screen Res: " + Screen.currentResolution + "  -  Screen Aspect Ratio: " + Screen.width * 1.0f / Screen.height);
+        width = (float)Screen.width / 2.0f;
+        height = (float)Screen.height / 2.0f;
         SetupFields();
         SetUpMoveBoundaries();
         StartCoroutine(GetFps()); // dev mode only
@@ -118,11 +127,25 @@ public class Player : MonoBehaviour {
     }
 
     private void Move() {
+#if UNITY_ANDROID || UNITY_IOS
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            Debug.Log("Touch: " + touch);
+            if (touch.phase == TouchPhase.Moved) {
+                Vector2 pos = touch.position;
+                Debug.Log("Touch Pos: " + pos);
+                // pos.x = (pos.x - width) / width;
+                // pos.y = (pos.y - height) / height;
+                // transform.position = new Vector3(-pos.x, pos.y, 0.0f);
+            }
+        }
+#else
         var deltaX = Input.GetAxis("Horizontal") * moveSpeed * deltaTime;
         var deltaY = Input.GetAxis("Vertical") * moveSpeed * deltaTime;
         var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
         var newYPos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
         transform.position = new Vector2(newXPos, newYPos);
+#endif
     }
 
     private void PowerUpTimers() {

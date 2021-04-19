@@ -18,7 +18,8 @@ public class WeaponHandler : MonoBehaviour {
 
     // Player
     Player player;
-    bool firingInput;
+    bool isMobile = false;
+    bool firingInput = false;
     bool puDamage;
 
     private void Start() {
@@ -54,6 +55,11 @@ public class WeaponHandler : MonoBehaviour {
         enemy = GetComponent<Enemy>();
         if (player) {
             weapons = player.Weapons;
+#if UNITY_ANDROID || UNITY_IOS
+            Debug.Log("Mobile: Auto-firing enabled");
+            isMobile = true;
+            firingInput = true;
+#endif
         } else {
             weapons = enemy.Weapons;
             xMin = Camera.main.ViewportToWorldPoint(new Vector3(0.025f, 0, 0)).x;
@@ -63,7 +69,6 @@ public class WeaponHandler : MonoBehaviour {
         shotCounter = new List<float>();
         shotReady = new List<bool>();
         firingCoroutines = new List<Coroutine>();
-        firingInput = false;
         puDamage = false;
     }
 
@@ -84,11 +89,13 @@ public class WeaponHandler : MonoBehaviour {
 
     private void GetInput() {
         puDamage = player.PuDamage;
-        if (Input.GetButtonDown("Fire1")) {
-            firingInput = true;
-        }
-        if (Input.GetButtonUp("Fire1")) {
-            firingInput = false;
+        if (!isMobile) {
+            if (!firingInput && Input.GetButtonDown("Fire1")) {
+                firingInput = true;
+            }
+            if (firingInput && Input.GetButtonUp("Fire1")) {
+                firingInput = false;
+            }
         }
     }
 
