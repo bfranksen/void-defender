@@ -172,9 +172,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.KillerBeeGames.VoidDefender
   buildNumber:
-    Standalone: 4
-    iPhone: 4
-  AndroidBundleVersionCode: 4
+    Standalone: 13
+    iPhone: 13
+  AndroidBundleVersionCode: 13
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -602,7 +602,7 @@ PlayerSettings:
   ps4ContentID: ED1633-NPXX51362_00-0000000000000000
   ps4Category: 0
   ps4MasterVersion: 01.00
-  ps4AppVersion: 3
+  ps4AppVersion: 12
   ps4AppType: 0
   ps4ParamSfxPath: 
   ps4VideoOutPixelFormat: 0
@@ -764,7 +764,7 @@ PlayerSettings:
   XboxOneGameOsOverridePath: 
   XboxOnePackagingOverridePath: 
   XboxOneAppManifestOverridePath: 
-  XboxOneVersion: 3
+  XboxOneVersion: 12
   XboxOnePackageEncryption: 0
   XboxOnePackageUpdateGranularity: 2
   XboxOneDescription: 
