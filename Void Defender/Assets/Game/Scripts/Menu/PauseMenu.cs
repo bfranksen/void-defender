@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -20,6 +20,10 @@ public class PauseMenu : MonoBehaviour {
     [Header("Sliders")]
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] Slider sfxVolumeSlider;
+
+    [Header("Dropdown")]
+    [SerializeField] TMP_Dropdown movementDropdown;
+    [SerializeField] TextMeshProUGUI movementDropdownText;
 
     [Header("Utils")]
     [SerializeField] GameObject healthContainer;
@@ -42,7 +46,14 @@ public class PauseMenu : MonoBehaviour {
         SetInitialVolumeSettings();
 #if UNITY_ANDROID || UNITY_IOS
         SetUpForMobile();
+        StartCoroutine(SetMovementDropdown());
 #endif
+    }
+
+    private IEnumerator SetMovementDropdown() {
+        yield return new WaitForSeconds(0.25f);
+        Movement movement = FindObjectOfType<Movement>();
+        movementDropdown.value = (int)movement.TouchConfig;
     }
 
     // Update is called once per frame
@@ -61,9 +72,37 @@ public class PauseMenu : MonoBehaviour {
 
     private void SetUpForMobile() {
         mobilePauseButton.SetActive(true);
-        pauseMenu.transform.localScale = new Vector3(1.25f, 1.25f, 0);
-        optionsMenu.transform.localScale = new Vector3(1.25f, 1.25f, 0);
+        SizeElementsInMenu(pauseMenu, true);
+        SizeElementsInMenu(optionsMenu, false);
         RepositionUIElements();
+    }
+
+    private void SizeElementsInMenu(GameObject go, bool isPauseMenu) {
+        Vector2 rtSizeDelta = new Vector2(Screen.width / -6f, Screen.height / -6f);
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.sizeDelta = rtSizeDelta;
+
+        float width = rt.rect.width;
+        float height = rt.rect.height;
+        float runningHeight = isPauseMenu ? height * -0.12f : height * -0.05f;
+        Vector2 childSizeDelta = new Vector2(width / -6f, 0);
+        int numChildren = rt.transform.childCount;
+        for (int i = 0; i < numChildren; i++) {
+            GameObject child = rt.transform.GetChild(i).gameObject;
+            RectTransform childRt = child.GetComponent<RectTransform>();
+            if (i > 0 && isPauseMenu) {
+                runningHeight += height * -0.12f;
+            } else if (i > 0 && i < 4 && !isPauseMenu) {
+                runningHeight += height * -0.16f;
+            } else if (i > 0) {
+                if (i == 4) runningHeight = -height + height * .24f;
+                if (i != 4) runningHeight -= height * 0.12f;
+            }
+            childRt.anchoredPosition = new Vector2(0, runningHeight);
+            childRt.sizeDelta += childSizeDelta;
+            if (i == 0 && isPauseMenu) runningHeight += height * -0.15f;
+            else if (i == 0) runningHeight += height * -0.05f;
+        }
     }
 
     private void RepositionUIElements() {
@@ -72,16 +111,27 @@ public class PauseMenu : MonoBehaviour {
         Vector3 topRightPos = new Vector3(safeArea.xMax, safeArea.yMax, 0);
         Vector3 botLeftPos = new Vector3(safeArea.xMin, safeArea.yMin, 0);
         Vector3 botRightPos = new Vector3(safeArea.xMax, safeArea.yMin, 0);
-
-        Vector3 topLeftOffset = new Vector3(32f, -32f);
-        Vector3 topRightOffset = new Vector3(-32f, -32f);
-        Vector3 botLeftOffset = new Vector3(32f, 32f);
-        Vector3 botRightOffset = new Vector3(-32f, 32f);
+        float offset = safeArea.width / 32f;
+        Vector3 topLeftOffset = new Vector3(offset, -offset, 0f);
+        Vector3 topRightOffset = new Vector3(-offset, -offset, 0f);
+        Vector3 botLeftOffset = new Vector3(offset, offset, 0f);
+        Vector3 botRightOffset = new Vector3(-offset, offset, 0f);
         healthContainer.transform.Translate(topLeftOffset);
-        livesContainer.transform.Translate(topLeftOffset);
-        buffContainer.transform.Translate(0f, botLeftOffset.y, 0f);
+        livesContainer.transform.Translate(topLeftOffset.x, topLeftOffset.y * 2f, 0f);
         scoreContainer.transform.Translate(topRightOffset);
-        mobilePauseButton.transform.Translate(botLeftOffset);
+        buffContainer.transform.Translate(0f, botLeftOffset.y * 5f, 0f);
+        mobilePauseButton.transform.Translate(botLeftOffset * 0.75f);
+    }
+
+    public void UpdateDropdownTooltip() {
+        string[] tooltips = { // Movement mode tooltips
+            "Follows your touch", // Follow
+            "Stationary joystick", // Fixed Joystick
+            "Joystick that moves with you" // Dynamic Joystick
+        };
+        int dropdownValue = movementDropdown.value;
+        movementDropdownText.text = tooltips[dropdownValue];
+        FindObjectOfType<Movement>().SetMovementModePref(dropdownValue);
     }
 
     private void ResetCurrentSelected() {
@@ -103,6 +153,9 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void PauseUnpause() {
+        if (!FindObjectOfType<Player>().CanFire) {
+            return;
+        }
         paused = !paused;
         if (paused && !pauseMenu.activeInHierarchy) {
             Movement.pauseCheck = false;
@@ -127,6 +180,9 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void OpenOptionsMenu() {
+        if (!FindObjectOfType<Player>().CanFire) {
+            return;
+        }
         initialMusicVolume = musicPlayer.MusicVolume;
         initialSfxVolume = musicPlayer.SfxVolume;
         optionsMenu.SetActive(true);

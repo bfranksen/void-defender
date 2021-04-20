@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ManualMenu : MonoBehaviour {
 
@@ -15,12 +16,8 @@ public class ManualMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        if (Input.GetJoystickNames().Length > 0) {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstButton);
-        } else {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        SetCurrentObject();
+        RepositionElements();
     }
 
     // Update is called once per frame
@@ -29,6 +26,66 @@ public class ManualMenu : MonoBehaviour {
             previousPageButton.GetComponent<Button>().onClick.Invoke();
         }
         ResetCurrentSelected();
+    }
+
+    private void SetCurrentObject() {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
+        GameObject go = EventSystem.current.currentSelectedGameObject;
+        go.GetComponent<Animator>().enabled = true;
+        TextMeshPro tmp = go.GetComponent<TextMeshPro>();
+        if (tmp) {
+            tmp.color = new Color32(255, 143, 0, 255);
+        }
+    }
+
+    private void RepositionElements() {
+        if (Screen.height - Screen.safeArea.height > 0 || Camera.main.aspect < 0.52f) {
+            RectTransform rt = gameObject.GetComponent<RectTransform>();
+            float screenHeight = Screen.height;
+            float safeAreaHeight = Screen.safeArea.height;
+            float safeAreaYMax = Screen.safeArea.yMax;
+            float childOneY = rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition.y;
+            float childTwoY = rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition.y;
+            float childOneOffset = screenHeight - safeAreaYMax + childOneY;
+            Debug.Log((screenHeight - safeAreaYMax) + " : " + childOneOffset);
+            float childTwoOffset = screenHeight - safeAreaHeight - (screenHeight - safeAreaYMax) + childTwoY;
+            Debug.Log(childTwoOffset);
+            rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition -= new Vector2(0, childOneOffset < 0 ? -childOneOffset : childOneOffset);
+            rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, childTwoOffset * 0.6f);
+            // rt.GetChild(1).gameObject.GetComponent<RectTransform>().transform.position -= new Vector3(0, Screen.height - Screen.safeArea.yMax - rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition.y, 0);
+            // rt.GetChild(3).gameObject.GetComponent<RectTransform>().transform.position += new Vector3(0, Screen.height - Screen.safeArea.height - (Screen.height - Screen.safeArea.yMax) + rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition.y, 0);
+        }
+    }
+
+    private void SetSizeDeltas() {
+        Vector2 rtSizeDelta = new Vector2(Screen.width / -8f, 0);
+        RectTransform rt = gameObject.GetComponent<RectTransform>();
+        List<GameObject> children = new List<GameObject>();
+        for (int i = 1; i < rt.transform.childCount; i++) {
+            GameObject child = rt.transform.GetChild(i).gameObject;
+            RectTransform childRt = child.GetComponent<RectTransform>();
+            if (i != 2) {
+                childRt.sizeDelta += rtSizeDelta;
+            }
+            children.Add(child);
+            if (i == 3 && Camera.main.aspect < 9f / 16f) {
+                PositionChildren(children, Screen.safeArea);
+            }
+        }
+    }
+
+    private void PositionChildren(List<GameObject> list, Rect safeArea) {
+        Debug.Log("hello");
+        list[1].transform.position = new Vector2(0, safeArea.center.y - safeArea.height * 0.072918f);
+        float heightAvailable = safeArea.height - safeArea.height * 0.572918f;
+
+        RectTransform firstRt = list[0].GetComponent<RectTransform>();
+        float newYMax = (heightAvailable * 2 / 3 - firstRt.rect.height) / 2;
+        list[0].transform.position = new Vector2(list[0].GetComponent<RectTransform>().sizeDelta.x, safeArea.yMax - newYMax);
+        RectTransform secondRt = list[2].GetComponent<RectTransform>();
+        newYMax = (heightAvailable * 2 / 3 - secondRt.rect.height) / 2;
+        list[2].transform.position = new Vector2(list[2].GetComponent<RectTransform>().sizeDelta.x, safeArea.yMin + newYMax);
     }
 
     private void ResetCurrentSelected() {

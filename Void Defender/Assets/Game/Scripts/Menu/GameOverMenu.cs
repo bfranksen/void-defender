@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class GameOverMenu : MonoBehaviour {
 
@@ -15,17 +16,38 @@ public class GameOverMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        if (Input.GetJoystickNames().Length > 0) {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstButton);
-        } else {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        SetCurrentObject();
+        SetSizeDeltas();
     }
 
     // Update is called once per frame
     private void Update() {
         ResetCurrentSelected();
+    }
+
+    private void SetCurrentObject() {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
+        GameObject go = EventSystem.current.currentSelectedGameObject;
+        go.GetComponent<Animator>().enabled = true;
+        TextMeshPro tmp = go.GetComponent<TextMeshPro>();
+        if (tmp) {
+            tmp.color = new Color32(255, 143, 0, 255);
+        }
+    }
+
+    private void SetSizeDeltas() {
+        Vector2 rtSizeDelta = new Vector2(Screen.width / -16f, 0);
+        RectTransform rt = gameObject.GetComponent<RectTransform>();
+        for (int i = 0; i < rt.transform.childCount; i++) {
+            Debug.Log("Child: " + rt.GetChild(i).gameObject.name);
+            if (i == 1) {
+                rtSizeDelta *= 2;
+            }
+            GameObject child = rt.transform.GetChild(i).gameObject;
+            RectTransform childRt = child.GetComponent<RectTransform>();
+            childRt.sizeDelta += rtSizeDelta;
+        }
     }
 
     private void ResetCurrentSelected() {
