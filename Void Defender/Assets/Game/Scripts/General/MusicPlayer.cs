@@ -46,6 +46,7 @@ public class MusicPlayer : MonoBehaviour {
     public void SavePlayerPrefs() {
         PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxVolume);
+        PlayerPrefs.Save();
     }
 
     public void PlayOneShot(AudioClip clip, float volume) {

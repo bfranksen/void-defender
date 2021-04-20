@@ -654,10 +654,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6272556022318879985, guid: 16c0155297bc54848be2acc9a7562514,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6272556022318879987, guid: 16c0155297bc54848be2acc9a7562514,
         type: 3}
       propertyPath: m_Name
       value: Game Manual 1 Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920910697691765316, guid: 16c0155297bc54848be2acc9a7562514,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16c0155297bc54848be2acc9a7562514, type: 3}

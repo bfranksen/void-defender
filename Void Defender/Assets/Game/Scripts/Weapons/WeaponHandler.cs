@@ -56,7 +56,7 @@ public class WeaponHandler : MonoBehaviour {
         if (player) {
             weapons = player.Weapons;
 #if UNITY_ANDROID || UNITY_IOS
-            Debug.Log("Mobile: Auto-firing enabled");
+            // Debug.Log("Mobile: Auto-firing enabled");
             isMobile = true;
             firingInput = true;
 #endif

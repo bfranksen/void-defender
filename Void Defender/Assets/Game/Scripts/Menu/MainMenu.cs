@@ -28,11 +28,11 @@ public class MainMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-#if UNITY_STANDALONE
-        ReconfigureButtonNav(false);
-#else
+#if UNITY_ANDROID || UNITY_IOS
         ReconfigureButtonNav(true);
         RepositionVolumeContainer();
+#else
+        ReconfigureButtonNav(false);
 #endif
         InitialVolumeSettings();
         SetCurrentObject();
@@ -40,17 +40,14 @@ public class MainMenu : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+#if !UNITY_ANDROID && !UNITY_IOS
         ResetCurrentSelected();
+#endif
         VolumeSliderControl();
     }
 
-    private void RepositionVolumeContainer() {
-        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(-32, -32, 0));
-        mvButton.transform.parent.gameObject.transform.localScale = new Vector2(2f, 2f);
-    }
-
     private void ReconfigureButtonNav(bool reconfigure) {
-        Debug.Log(reconfigure ? "Reconfiguring" : "Not Reconfiguring");
+        // Debug.Log(reconfigure ? "Reconfiguring" : "Not Reconfiguring");
         exitButton.SetActive(!reconfigure);
         if (reconfigure) {
             Button btn = beforeExitButton.GetComponent<Button>();
@@ -69,6 +66,11 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    private void RepositionVolumeContainer() {
+        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(-32, -32, 0));
+        mvButton.transform.parent.gameObject.transform.localScale = new Vector2(2f, 2f);
+    }
+
     private void InitialVolumeSettings() {
         musicPlayer = FindObjectOfType<MusicPlayer>();
         volumeSlider.value = musicPlayer.MusicVolume;
@@ -80,7 +82,6 @@ public class MainMenu : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(startButton);
         GameObject go = EventSystem.current.currentSelectedGameObject;
         go.GetComponent<Animator>().enabled = true;
-        
         TextMeshPro tmp = go.GetComponent<TextMeshPro>();
         if (tmp) {
             tmp.color = new Color32(255, 143, 0, 255);
@@ -88,7 +89,6 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void ResetCurrentSelected() {
-#if UNITY_STANDALONE
         if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
             lastSelectedObject = recentSelectedObject;
             recentSelectedObject = EventSystem.current.currentSelectedGameObject;
@@ -97,7 +97,6 @@ public class MainMenu : MonoBehaviour {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
         EnableAnimator();
-#endif
     }
 
     private void EnableAnimator() {
