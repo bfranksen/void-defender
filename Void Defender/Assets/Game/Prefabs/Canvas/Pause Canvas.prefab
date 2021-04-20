@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484962085497870388}
   - component: {fileID: 484962085497870347}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Music Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962085595938981}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SFX Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 484962085627173718}
   - component: {fileID: 484962085627173716}
   - component: {fileID: 484962085627173717}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 484962085707640259}
   - component: {fileID: 484962085707640257}
   - component: {fileID: 484962085707640258}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 484962085822238459}
   - component: {fileID: 484962085822238457}
   - component: {fileID: 484962085822238458}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Heading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 484962085892085325}
   - component: {fileID: 484962085892085315}
   - component: {fileID: 484962085892085324}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Heading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 484962086093685536}
   - component: {fileID: 484962086093685542}
   - component: {fileID: 484962086093685543}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1025,7 @@ GameObject:
   - component: {fileID: 484962086165312948}
   - component: {fileID: 484962086165312906}
   - component: {fileID: 484962086165312907}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 484962086202708762}
   - component: {fileID: 484962086202708763}
   - component: {fileID: 484962086202708740}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 484962086290903489}
   - component: {fileID: 484962086290903495}
   - component: {fileID: 484962086290903488}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1267,7 +1267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962086385827375}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   - component: {fileID: 484962086400268067}
   - component: {fileID: 484962086400268065}
   - component: {fileID: 484962086400268066}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 484962086426483433}
   - component: {fileID: 484962086426483439}
   - component: {fileID: 484962086426483432}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SFX Volume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1515,7 @@ GameObject:
   - component: {fileID: 484962086572177310}
   - component: {fileID: 484962086572177308}
   - component: {fileID: 484962086572177309}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Music Volume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1651,7 +1651,7 @@ GameObject:
   - component: {fileID: 484962086630742176}
   - component: {fileID: 484962086630742182}
   - component: {fileID: 484962086630742183}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1726,7 +1726,7 @@ GameObject:
   - component: {fileID: 484962086661080800}
   - component: {fileID: 484962086661080801}
   - component: {fileID: 484962086661080802}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 484962086708184489}
   - component: {fileID: 484962086708184495}
   - component: {fileID: 484962086708184488}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2274,7 +2274,7 @@ GameObject:
   - component: {fileID: 484962086985538915}
   - component: {fileID: 484962086985538913}
   - component: {fileID: 484962086985538914}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Underline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2346,7 +2346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962087006357985}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2384,7 +2384,7 @@ GameObject:
   - component: {fileID: 484962087028941584}
   - component: {fileID: 484962087028941590}
   - component: {fileID: 484962087028941591}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2458,7 +2458,7 @@ GameObject:
   - component: {fileID: 484962087074037249}
   - component: {fileID: 484962087074037255}
   - component: {fileID: 484962087074037248}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Confirm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2531,7 +2531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962087173979200}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Music Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2569,7 +2569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484962087252288227}
   - component: {fileID: 484962087252288226}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SFX Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2668,7 +2668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962087294511682}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,7 +2897,7 @@ GameObject:
   - component: {fileID: 484962087406547016}
   - component: {fileID: 484962087406547022}
   - component: {fileID: 484962087406547023}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3161,7 +3161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484962087487780641}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3199,7 +3199,7 @@ GameObject:
   - component: {fileID: 484962087498994264}
   - component: {fileID: 484962087498994270}
   - component: {fileID: 484962087498994271}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3341,7 +3341,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -3378,9 +3378,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 484962086202708742}
   optionsMenu: {fileID: 484962086661080812}
+  mobilePauseButton: {fileID: 0}
   pauseFirstButton: {fileID: 484962086861563639}
   optionsFirstButton: {fileID: 484962086735535615}
   optionsClosedButton: {fileID: 484962087317177904}
   musicVolumeSlider: {fileID: 484962085497870347}
   sfxVolumeSlider: {fileID: 484962087252288226}
-  shade: {fileID: 0}
+  shade: {fileID: 4688481742138692358, guid: 774358998b07198498cf9b40c3f3d508, type: 3}

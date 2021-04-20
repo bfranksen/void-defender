@@ -11,9 +11,6 @@ public class Player : MonoBehaviour {
 
     [Header("Player")]
     [SerializeField] int startingHealth = 200;
-    [SerializeField] float moveSpeed = 10f;
-    [SerializeField] float xPadding = 0.5f;
-    [SerializeField] float yPadding = 0.5f;
 
     [Header("Weapons")]
     [SerializeField] List<Weapon> weapons;
@@ -36,7 +33,6 @@ public class Player : MonoBehaviour {
     [SerializeField] [Range(0, 1)] float deathSFXVolume = 0.5f;
 
     // Respawn
-    Vector3 respawnPos;
     bool respawning = false;
     bool canFire = true;
 
@@ -55,19 +51,8 @@ public class Player : MonoBehaviour {
     // General
     MusicPlayer musicPlayer;
     GameSession gameSession;
+    Movement movement;
     float deltaTime;
-
-    // Player movement
-    float xMin;
-    float xMax;
-    float yMin;
-    float yMax;
-
-    // Touch movement
-#if UNITY_ANDROID || UNITY_IOS
-    private float width;
-    private float height;
-#endif
 
     // Get: Set:
     public bool PuDamage { get => puDamage; set => puDamage = value; }
@@ -80,23 +65,17 @@ public class Player : MonoBehaviour {
     public bool CanFire { get => canFire; set => canFire = value; }
 
 
-
     // ---------------------------------------------------------------------------------------------------------------------------
     //  SCRIPT
     // ---------------------------------------------------------------------------------------------------------------------------
 
     private void Start() {
-        Debug.Log("Screen Res: " + Screen.currentResolution + "  -  Screen Aspect Ratio: " + Screen.width * 1.0f / Screen.height);
-        width = (float)Screen.width / 2.0f;
-        height = (float)Screen.height / 2.0f;
         SetupFields();
-        SetUpMoveBoundaries();
         StartCoroutine(GetFps()); // dev mode only
     }
 
     private void Update() {
         deltaTime = Time.deltaTime;
-        Move();
         PowerUpTimers();
         if (dm_FpsCounter) {
             updateCount++;
@@ -108,44 +87,7 @@ public class Player : MonoBehaviour {
         if (!gameSession) {
             gameSession = FindObjectOfType<GameSession>();
         }
-    }
-
-    private void SetUpMoveBoundaries() {
-        Camera gameCamera = Camera.main;
-        Renderer renderer = GetComponent<Renderer>();
-
-        Vector3 bottomeLeftWorldCoordinates = gameCamera.ViewportToWorldPoint(Vector3.zero);
-        Vector3 topRightWorldCoordinates = gameCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));
-        Vector3 movementRangeMin = bottomeLeftWorldCoordinates + renderer.bounds.extents;
-        Vector3 movementRangeMax = topRightWorldCoordinates - renderer.bounds.extents;
-
-        respawnPos = gameCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.1f, 0));
-        xMin = movementRangeMin.x + xPadding;
-        xMax = movementRangeMax.x - xPadding;
-        yMin = movementRangeMin.y + yPadding;
-        yMax = movementRangeMax.y - yPadding * 4;
-    }
-
-    private void Move() {
-#if UNITY_ANDROID || UNITY_IOS
-        if (Input.touchCount > 0) {
-            Touch touch = Input.GetTouch(0);
-            Debug.Log("Touch: " + touch);
-            if (touch.phase == TouchPhase.Moved) {
-                Vector2 pos = touch.position;
-                Debug.Log("Touch Pos: " + pos);
-                // pos.x = (pos.x - width) / width;
-                // pos.y = (pos.y - height) / height;
-                // transform.position = new Vector3(-pos.x, pos.y, 0.0f);
-            }
-        }
-#else
-        var deltaX = Input.GetAxis("Horizontal") * moveSpeed * deltaTime;
-        var deltaY = Input.GetAxis("Vertical") * moveSpeed * deltaTime;
-        var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
-        var newYPos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
-        transform.position = new Vector2(newXPos, newYPos);
-#endif
+        movement = GetComponent<Movement>();
     }
 
     private void PowerUpTimers() {
@@ -206,7 +148,7 @@ public class Player : MonoBehaviour {
         DestroyPowerUps();
         GetComponent<Renderer>().enabled = false;
         yield return StartCoroutine(DeathAnimation());
-        transform.position = respawnPos;
+        transform.position = movement.RespawnPos;
         GetComponent<Renderer>().enabled = true;
         GainShield(respawnShieldPrefab, false);
         gameSession.Health = startingHealth;

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5354372056648676997}
   - component: {fileID: 5354372056648676996}
   - component: {fileID: 3255404333294841164}
+  - component: {fileID: -83765374823023741}
   - component: {fileID: 5354372056648676998}
-  - component: {fileID: 3186689428395599355}
   - component: {fileID: -1357500533850237056}
+  - component: {fileID: 3186689428395599355}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -48,10 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 200
-  startingLives: 2
-  moveSpeed: 5.5
-  xPadding: 0.1
-  yPadding: 0.5
   weapons:
   - {fileID: 11400000, guid: e6d949b7a83f67741aced8c81bd8f2bd, type: 2}
   puTimeEmpowered: 6
@@ -66,7 +63,7 @@ MonoBehaviour:
   deathSFX: {fileID: 8300000, guid: 057a20c108296c74db79e39bc5975248, type: 3}
   deathSFXVolume: 0.5
   dm_FpsCounter: 0
-  dm_Invulnerable: 1
+  dm_Invulnerable: 0
 --- !u!114 &3255404333294841164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +76,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da553d3ea4102642becf17228671f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-83765374823023741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354372056648676999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe7d23c51ac3e74080027002af7c3ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 6
+  innerCircle: {fileID: 0}
+  outerCircle: {fileID: 0}
+  touchConfig: 0
 --- !u!212 &5354372056648676998
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -129,27 +142,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3186689428395599355
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5354372056648676999}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!60 &-1357500533850237056
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -187,3 +179,24 @@ PolygonCollider2D:
       - {x: 0.48323688, y: -0.30245608}
       - {x: 0.48549137, y: -0.2020524}
       - {x: 0.1229475, y: 0.2127455}
+--- !u!50 &3186689428395599355
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354372056648676999}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
