@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SocialPlatforms;
 using UnityEngine;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 public class GameSession : MonoBehaviour {
 
+    // INSTANCE
     private static GameSession _instance = null;
     public static GameSession Instance {
         get { return _instance; }
     }
 
+    // GOOGLE PLAY
+    public static PlayGamesPlatform platform;
+
+    // PLAYER INFO
     private int health = 200;
     private int lives = 2;
     private int score = 0;
+    public int Health { get => health; set => health = value; }
+    public int Lives { get => lives; set => lives = value; }
+    public int Score { get => score; set => score = value; }
 
-    // Start is called before the first frame update
     private void Awake() {
+        ActivatePlatformAndLogIn();
         SetUpSingleton();
-        ResourceRequest request = Resources.LoadAsync("Build", typeof(BuildScriptableObject));
-        request.completed += Request_completed;
     }
 
     private void SetUpSingleton() {
@@ -33,23 +42,26 @@ public class GameSession : MonoBehaviour {
         }
     }
 
+    private void ActivatePlatformAndLogIn() {
+        if (platform == null) {
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+            PlayGamesPlatform.InitializeInstance(config);
+            PlayGamesPlatform.DebugLogEnabled = true;
+            platform = PlayGamesPlatform.Activate();
+        }
+
+        Social.Active.localUser.Authenticate(success => {
+            if (success) {
+                Debug.Log("Logged in successfully!");
+            } else {
+                Debug.Log("Failed to log in!");
+            }
+        });
+    }
+
     public void ResetGame() {
         health = 200;
         lives = 2;
         score = 0;
-    }
-
-    public int Health { get => health; set => health = value; }
-    public int Lives { get => lives; set => lives = value; }
-    public int Score { get => score; set => score = value; }
-
-    private void Request_completed(AsyncOperation obj) {
-        BuildScriptableObject buildScriptableObject = ((ResourceRequest)obj).asset as BuildScriptableObject;
-
-        if (buildScriptableObject == null) {
-            Debug.LogError("Build scriptable object not found in resources directory! Check build log for errors!");
-        } else {
-            Debug.Log($"Build: {Application.version}.{buildScriptableObject.BuildNumber}");
-        }
     }
 }
