@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zapSFX: {fileID: 8300000, guid: d56c9b991ea518e428ba0fc3bc4ef3c1, type: 3}
-  zapSFXVolume: 0.05
+  zapSFXVolume: 0.025
 --- !u!120 &12010332
 LineRenderer:
   m_ObjectHideFlags: 0
