@@ -78,24 +78,24 @@ public class PauseMenu : MonoBehaviour {
     }
 
     private void SizeElementsInMenu(GameObject go, bool isPauseMenu) {
-        Vector2 rtSizeDelta = new Vector2(Screen.width / -6f, Screen.height / -6f);
+        Vector2 rtSizeDelta = new Vector2(Screen.width / -6f, Screen.height / -4f);
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.sizeDelta = rtSizeDelta;
 
         float width = rt.rect.width;
         float height = rt.rect.height;
-        float runningHeight = isPauseMenu ? height * -0.12f : height * -0.05f;
+        float runningHeight = height * -0.025f;
         Vector2 childSizeDelta = new Vector2(width / -6f, 0);
         int numChildren = rt.transform.childCount;
-        for (int i = 0; i < numChildren; i++) {
+        for (int i = 0; i < numChildren - 1; i++) {
             GameObject child = rt.transform.GetChild(i).gameObject;
             RectTransform childRt = child.GetComponent<RectTransform>();
             if (i > 0 && isPauseMenu) {
                 runningHeight += height * -0.12f;
             } else if (i > 0 && i < 4 && !isPauseMenu) {
-                runningHeight += height * -0.16f;
+                runningHeight += height * -0.15f;
             } else if (i > 0) {
-                if (i == 4) runningHeight = -height + height * .24f;
+                if (i == 4) runningHeight = -height + height * .25f;
                 if (i != 4) runningHeight -= height * 0.12f;
             }
             childRt.anchoredPosition = new Vector2(0, runningHeight);
