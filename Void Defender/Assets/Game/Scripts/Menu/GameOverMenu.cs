@@ -9,6 +9,7 @@ public class GameOverMenu : MonoBehaviour {
 
     [Header("Buttons")]
     [SerializeField] GameObject firstButton;
+    [SerializeField] GameObject mainMenuButton;
 
     GameObject recentSelectedObject;
     GameObject lastSelectedObject;
@@ -16,8 +17,11 @@ public class GameOverMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        SetCurrentObject();
+        SetInitialObject();
         SetSizeDeltas();
+#if UNITY_ANDROID || UNITY_IOS
+        ChangeButtonColorScheme();
+#endif
     }
 
     // Update is called once per frame
@@ -25,7 +29,7 @@ public class GameOverMenu : MonoBehaviour {
         ResetCurrentSelected();
     }
 
-    private void SetCurrentObject() {
+    private void SetInitialObject() {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstButton);
         GameObject go = EventSystem.current.currentSelectedGameObject;
@@ -40,13 +44,22 @@ public class GameOverMenu : MonoBehaviour {
         Vector2 rtSizeDelta = new Vector2(Screen.width / -16f, 0);
         RectTransform rt = gameObject.GetComponent<RectTransform>();
         for (int i = 0; i < rt.transform.childCount; i++) {
-            Debug.Log("Child: " + rt.GetChild(i).gameObject.name);
             if (i == 1) {
                 rtSizeDelta *= 2;
             }
             GameObject child = rt.transform.GetChild(i).gameObject;
             RectTransform childRt = child.GetComponent<RectTransform>();
             childRt.sizeDelta += rtSizeDelta;
+        }
+    }
+    private void ChangeButtonColorScheme() {
+        foreach (Button button in FindObjectsOfType<Button>()) {
+            if (button != firstButton.GetComponent<Button>()) {
+                ColorBlock colorBlock = button.colors;
+                colorBlock.highlightedColor = Color.white;
+                colorBlock.selectedColor = Color.white;
+                button.colors = colorBlock;
+            }
         }
     }
 
@@ -58,7 +71,9 @@ public class GameOverMenu : MonoBehaviour {
         if (!EventSystem.current.currentSelectedGameObject) {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
+#if !UNITY_ANDROID && !UNITY_IOS
         EnableAnimator();
+#endif
     }
 
     private void EnableAnimator() {

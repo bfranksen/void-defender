@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.1
+  m_fontSize: 91.9
   m_fontSizeBase: 156
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 153.7
+  m_fontSize: 192
   m_fontSizeBase: 156
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliderContainer: {fileID: 259206459929478936}
   volumeSlider: {fileID: 49645419}
-  startButton: {fileID: 3207362577651131703}
+  firstButton: {fileID: 3207362577651131703}
   beforeExitButton: {fileID: 3207362577234462034}
   exitButton: {fileID: 3207362578051092440}
   mvButton: {fileID: 3063989664546857022}

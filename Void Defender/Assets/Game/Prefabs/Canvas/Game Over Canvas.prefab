@@ -675,7 +675,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
     m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
     m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
     m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
@@ -1105,3 +1105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstButton: {fileID: 1349761624}
+  mainMenuButton: {fileID: 1210618039}

@@ -335,7 +335,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
     m_HighlightedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
     m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
     m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
@@ -3469,7 +3469,7 @@ GameObject:
   - component: {fileID: 5796936540584520685}
   - component: {fileID: 8553402988645970871}
   m_Layer: 5
-  m_Name: Game Manual 2 Canvas 1
+  m_Name: Game Manual 2 Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3572,6 +3572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstButton: {fileID: 1196921164378550613}
   previousPageButton: {fileID: 1196921164378550613}
+  keyboardControls: {fileID: 0}
+  touchControls: {fileID: 0}
 --- !u!1 &6730612097816334712
 GameObject:
   m_ObjectHideFlags: 0

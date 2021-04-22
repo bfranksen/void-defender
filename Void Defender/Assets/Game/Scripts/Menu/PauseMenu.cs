@@ -142,11 +142,12 @@ public class PauseMenu : MonoBehaviour {
     }
 
     private void ResetCurrentSelected() {
-        if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
+        GameObject selected = EventSystem.current.currentSelectedGameObject;
+        if (selected != recentSelectedObject) {
             lastSelectedObject = recentSelectedObject;
-            recentSelectedObject = EventSystem.current.currentSelectedGameObject;
+            recentSelectedObject = selected;
         }
-        if (!EventSystem.current.currentSelectedGameObject) {
+        if (!selected) {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
     }

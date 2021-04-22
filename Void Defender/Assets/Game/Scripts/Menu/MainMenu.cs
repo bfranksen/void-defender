@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] Slider volumeSlider;
 
     [Header("Buttons")]
-    [SerializeField] GameObject startButton;
+    [SerializeField] GameObject firstButton;
     [SerializeField] GameObject beforeExitButton;
     [SerializeField] GameObject exitButton;
     [SerializeField] GameObject mvButton;
@@ -30,12 +30,13 @@ public class MainMenu : MonoBehaviour {
     private void Start() {
 #if UNITY_ANDROID || UNITY_IOS
         ReconfigureButtonNav(true);
-        RepositionVolumeContainer();
+        ChangeButtonColorScheme();
 #else
         ReconfigureButtonNav(false);
 #endif
+        RepositionVolumeContainer();
         InitialVolumeSettings();
-        SetCurrentObject();
+        SetInitialObject();
     }
 
     // Update is called once per frame
@@ -47,7 +48,6 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void ReconfigureButtonNav(bool reconfigure) {
-        // Debug.Log(reconfigure ? "Reconfiguring" : "Not Reconfiguring");
         exitButton.SetActive(!reconfigure);
         if (reconfigure) {
             Button btn = beforeExitButton.GetComponent<Button>();
@@ -65,11 +65,20 @@ public class MainMenu : MonoBehaviour {
             btn.navigation = nav;
         }
     }
+    private void ChangeButtonColorScheme() {
+        foreach (Button button in FindObjectsOfType<Button>()) {
+            if (button != firstButton.GetComponent<Button>()) {
+                ColorBlock colorBlock = button.colors;
+                colorBlock.highlightedColor = Color.white;
+                colorBlock.selectedColor = Color.white;
+                button.colors = colorBlock;
+            }
+        }
+    }
 
     private void RepositionVolumeContainer() {
-        float safeAreaDiff = Screen.height - Screen.safeArea.height;
-        Debug.Log(safeAreaDiff);
-        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(42f, safeAreaDiff / -2f - 32f, 0));
+        float safeAreaDiff = Screen.height - Screen.safeArea.yMax;
+        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(safeAreaDiff / 2f + 32f, safeAreaDiff / -2f - 32f, 0));
         mvButton.transform.parent.gameObject.transform.localScale = new Vector2(1.5f, 1.5f);
     }
 
@@ -79,9 +88,9 @@ public class MainMenu : MonoBehaviour {
         initialMusicVolume = musicPlayer.MusicVolume;
     }
 
-    private void SetCurrentObject() {
+    private void SetInitialObject() {
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(startButton);
+        EventSystem.current.SetSelectedGameObject(firstButton);
         GameObject go = EventSystem.current.currentSelectedGameObject;
         go.GetComponent<Animator>().enabled = true;
         TextMeshPro tmp = go.GetComponent<TextMeshPro>();
@@ -98,7 +107,9 @@ public class MainMenu : MonoBehaviour {
         if (!EventSystem.current.currentSelectedGameObject) {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
+#if !UNITY_ANDROID && !UNITY_IOS
         EnableAnimator();
+#endif
     }
 
     private void EnableAnimator() {
@@ -172,7 +183,7 @@ public class MainMenu : MonoBehaviour {
 #else
         nav.selectOnUp = beforeExitButton.GetComponent<Button>();
 #endif
-        nav.selectOnDown = startButton.GetComponent<Button>();
+        nav.selectOnDown = firstButton.GetComponent<Button>();
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mvButton);
         return nav;

@@ -20,9 +20,12 @@ public class ManualMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        SetCurrentObject();
+        SetInitialObject();
         RepositionElements();
         if (keyboardControls && touchControls) UpdateControlsVisibility();
+#if UNITY_ANDROID || UNITY_IOS
+        ChangeButtonColorScheme();
+#endif
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class ManualMenu : MonoBehaviour {
         ResetCurrentSelected();
     }
 
-    private void SetCurrentObject() {
+    private void SetInitialObject() {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstButton);
         GameObject go = EventSystem.current.currentSelectedGameObject;
@@ -42,16 +45,6 @@ public class ManualMenu : MonoBehaviour {
         if (tmp) {
             tmp.color = new Color32(255, 143, 0, 255);
         }
-    }
-
-    private void UpdateControlsVisibility() {
-#if UNITY_ANDROID || UNITY_IOS
-        touchControls.SetActive(true);
-        keyboardControls.SetActive(false);
-#else
-        touchControls.SetActive(false);
-        keyboardControls.SetActive(true);
-#endif
     }
 
     private void RepositionElements() {
@@ -63,13 +56,31 @@ public class ManualMenu : MonoBehaviour {
             float childOneY = rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition.y;
             float childTwoY = rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition.y;
             float childOneOffset = screenHeight - safeAreaYMax + childOneY;
-            Debug.Log((screenHeight - safeAreaYMax) + " : " + childOneOffset);
             float childTwoOffset = screenHeight - safeAreaHeight - (screenHeight - safeAreaYMax) + childTwoY;
-            Debug.Log(childTwoOffset);
             rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition -= new Vector2(0, childOneOffset < 0 ? -childOneOffset : childOneOffset);
             rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, childTwoOffset * 0.6f);
             // rt.GetChild(1).gameObject.GetComponent<RectTransform>().transform.position -= new Vector3(0, Screen.height - Screen.safeArea.yMax - rt.GetChild(1).gameObject.GetComponent<RectTransform>().anchoredPosition.y, 0);
             // rt.GetChild(3).gameObject.GetComponent<RectTransform>().transform.position += new Vector3(0, Screen.height - Screen.safeArea.height - (Screen.height - Screen.safeArea.yMax) + rt.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition.y, 0);
+        }
+    }
+    private void UpdateControlsVisibility() {
+#if UNITY_ANDROID || UNITY_IOS
+        touchControls.SetActive(true);
+        keyboardControls.SetActive(false);
+#else
+        touchControls.SetActive(false);
+        keyboardControls.SetActive(true);
+#endif
+    }
+
+    private void ChangeButtonColorScheme() {
+        foreach (Button button in FindObjectsOfType<Button>()) {
+            if (button != firstButton.GetComponent<Button>()) {
+                ColorBlock colorBlock = button.colors;
+                colorBlock.highlightedColor = Color.white;
+                colorBlock.selectedColor = Color.white;
+                button.colors = colorBlock;
+            }
         }
     }
 
@@ -91,7 +102,6 @@ public class ManualMenu : MonoBehaviour {
     }
 
     private void PositionChildren(List<GameObject> list, Rect safeArea) {
-        Debug.Log("hello");
         list[1].transform.position = new Vector2(0, safeArea.center.y - safeArea.height * 0.072918f);
         float heightAvailable = safeArea.height - safeArea.height * 0.572918f;
 
@@ -111,7 +121,9 @@ public class ManualMenu : MonoBehaviour {
         if (!EventSystem.current.currentSelectedGameObject) {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
+#if !UNITY_ANDROID && !UNITY_IOS
         EnableAnimator();
+#endif
     }
 
     private void EnableAnimator() {

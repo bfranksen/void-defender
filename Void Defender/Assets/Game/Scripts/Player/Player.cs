@@ -149,7 +149,6 @@ public class Player : MonoBehaviour {
         DestroyPowerUps();
         render.enabled = false;
         yield return StartCoroutine(DeathAnimation());
-        Debug.Log(movement.RespawnPos);
         transform.position = movement.RespawnPos;
         render.enabled = true;
         GainShield(respawnShieldPrefab, false);
