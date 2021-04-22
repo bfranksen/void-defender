@@ -11,6 +11,10 @@ public class ManualMenu : MonoBehaviour {
     [SerializeField] GameObject firstButton;
     [SerializeField] GameObject previousPageButton;
 
+    [Header("Controls")]
+    [SerializeField] GameObject keyboardControls;
+    [SerializeField] GameObject touchControls;
+
     GameObject recentSelectedObject;
     GameObject lastSelectedObject;
 
@@ -18,6 +22,7 @@ public class ManualMenu : MonoBehaviour {
     private void Start() {
         SetCurrentObject();
         RepositionElements();
+        if (keyboardControls && touchControls) UpdateControlsVisibility();
     }
 
     // Update is called once per frame
@@ -37,6 +42,16 @@ public class ManualMenu : MonoBehaviour {
         if (tmp) {
             tmp.color = new Color32(255, 143, 0, 255);
         }
+    }
+
+    private void UpdateControlsVisibility() {
+#if UNITY_ANDROID || UNITY_IOS
+        touchControls.SetActive(true);
+        keyboardControls.SetActive(false);
+#else
+        touchControls.SetActive(false);
+        keyboardControls.SetActive(true);
+#endif
     }
 
     private void RepositionElements() {

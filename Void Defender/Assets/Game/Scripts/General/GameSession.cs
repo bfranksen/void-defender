@@ -14,7 +14,9 @@ public class GameSession : MonoBehaviour {
     }
 
     // GOOGLE PLAY
+#if UNITY_ANDROID
     public static PlayGamesPlatform platform;
+#endif
 
     // PLAYER INFO
     private int health = 200;
@@ -43,6 +45,7 @@ public class GameSession : MonoBehaviour {
     }
 
     private void ActivatePlatformAndLogIn() {
+#if UNITY_ANDROID
         if (platform == null) {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
@@ -57,6 +60,7 @@ public class GameSession : MonoBehaviour {
                 Debug.Log("Failed to log in!");
             }
         });
+#endif
     }
 
     public void ResetGame() {
