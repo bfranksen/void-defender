@@ -145,11 +145,13 @@ public class Player : MonoBehaviour {
 
     private IEnumerator Respawn() {
         // DestroyProjectiles(); // Not sure if this will be used here, but keeping code for potential use elsewhere
+        Renderer render = GetComponent<Renderer>();
         DestroyPowerUps();
-        GetComponent<Renderer>().enabled = false;
+        render.enabled = false;
         yield return StartCoroutine(DeathAnimation());
+        Debug.Log(movement.RespawnPos);
         transform.position = movement.RespawnPos;
-        GetComponent<Renderer>().enabled = true;
+        render.enabled = true;
         GainShield(respawnShieldPrefab, false);
         gameSession.Health = startingHealth;
         respawning = false;

@@ -160,7 +160,8 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void PauseUnpause() {
-        if (!FindObjectOfType<Player>().CanFire) {
+        Player player = FindObjectOfType<Player>();
+        if (player && !player.CanFire) {
             return;
         }
         paused = !paused;

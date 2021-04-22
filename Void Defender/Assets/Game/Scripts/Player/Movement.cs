@@ -78,11 +78,14 @@ public class Movement : MonoBehaviour {
         Vector3 movementRangeMin = bottomLeftWorldCoordinates + extents;
         Vector3 movementRangeMax = topRightWorldCoordinates - extents;
 
-        RespawnPos = gameCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.1f, 0));
+        RespawnPos = gameCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.1f, 0f)) - new Vector3(0, 0, gameCamera.transform.position.z);
         xMin = movementRangeMin.x;
         xMax = movementRangeMax.x;
         yMin = movementRangeMin.y + extents.y * 2;
         yMax = movementRangeMax.y - extents.y * 8;
+
+        outerCircleSR = outerCircle.GetComponent<SpriteRenderer>();
+        innerCircleSR = innerCircle.GetComponent<SpriteRenderer>();
     }
 
     private void ResizeAndReposJoystick() {
@@ -95,8 +98,6 @@ public class Movement : MonoBehaviour {
             innerCircle.transform.position = joystickPos;
             pointB = joystickPos;
         }
-        outerCircleSR = outerCircle.GetComponent<SpriteRenderer>();
-        innerCircleSR = innerCircle.GetComponent<SpriteRenderer>();
     }
 
     private void GetInput() {
@@ -198,7 +199,7 @@ public class Movement : MonoBehaviour {
         if (TouchConfig == TouchConfigType.FixedJoystick || TouchConfig == TouchConfigType.DynamicJoystick) {
             currentMoveSpeed = initialMoveSpeed;
             joystick.SetActive(true);
-            ResizeAndReposJoystick();
+            if (TouchConfig == TouchConfigType.FixedJoystick) ResizeAndReposJoystick();
         } else {
             currentMoveSpeed = initialMoveSpeed * 1.15f;
             joystick.SetActive(false);
