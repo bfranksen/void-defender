@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour {
         player = GetComponent<Player>();
         SetUpMoveBoundaries();
 #if UNITY_ANDROID || UNITY_IOS
-        ResetMovementMode();
+        ResetTouchConfigEffects();
 #endif
     }
 
@@ -191,10 +191,10 @@ public class Movement : MonoBehaviour {
         TouchConfig = (TouchConfigType)mode;
         PlayerPrefs.SetInt(PLAYER_MOVEMENT_KEY, mode);
         PlayerPrefs.Save();
-        ResetMovementMode();
+        ResetTouchConfigEffects();
     }
 
-    private void ResetMovementMode() {
+    private void ResetTouchConfigEffects() {
         if (TouchConfig == TouchConfigType.FixedJoystick || TouchConfig == TouchConfigType.DynamicJoystick) {
             currentMoveSpeed = initialMoveSpeed;
             joystick.SetActive(true);

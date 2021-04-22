@@ -4799,7 +4799,7 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 484962085497870347}
   sfxVolumeSlider: {fileID: 484962087252288226}
   movementDropdown: {fileID: 8256521967544794371}
-  movementDropdownText: {fileID: 8502900656077047094}
+  movementDropdownTooltip: {fileID: 8502900656077047094}
   healthContainer: {fileID: 0}
   livesContainer: {fileID: 0}
   buffContainer: {fileID: 0}

@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour {
 
     [Header("Dropdown")]
     [SerializeField] TMP_Dropdown movementDropdown;
-    [SerializeField] TextMeshProUGUI movementDropdownText;
+    [SerializeField] TextMeshProUGUI movementDropdownTooltip;
 
     [Header("Utils")]
     [SerializeField] GameObject healthContainer;
@@ -40,6 +40,8 @@ public class PauseMenu : MonoBehaviour {
     MusicPlayer musicPlayer;
     float initialMusicVolume;
     float initialSfxVolume;
+    Movement movement;
+    int initialMoveMode;
 
     // Called before the first update
     private void Start() {
@@ -47,13 +49,9 @@ public class PauseMenu : MonoBehaviour {
 #if UNITY_ANDROID || UNITY_IOS
         SetUpForMobile();
         StartCoroutine(SetMovementDropdown());
+#else
+        mobilePauseButton.SetActive(false);
 #endif
-    }
-
-    private IEnumerator SetMovementDropdown() {
-        yield return new WaitForSeconds(0.25f);
-        Movement movement = FindObjectOfType<Movement>();
-        movementDropdown.value = (int)movement.TouchConfig;
     }
 
     // Update is called once per frame
@@ -75,6 +73,13 @@ public class PauseMenu : MonoBehaviour {
         SizeElementsInMenu(pauseMenu, true);
         SizeElementsInMenu(optionsMenu, false);
         RepositionUIElements();
+    }
+
+    private IEnumerator SetMovementDropdown() {
+        movement = FindObjectOfType<Movement>();
+        initialMoveMode = -1;
+        yield return new WaitForSeconds(0.1f);
+        movementDropdown.value = (int)movement.TouchConfig;
     }
 
     private void SizeElementsInMenu(GameObject go, bool isPauseMenu) {
@@ -124,14 +129,16 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void UpdateDropdownTooltip() {
+        int dropdownValue = movementDropdown.value;
+        if (initialMoveMode == -1) {
+            initialMoveMode = dropdownValue;
+        }
         string[] tooltips = { // Movement mode tooltips
             "Follows your touch", // Follow
             "Stationary joystick", // Fixed Joystick
             "Joystick that moves with you" // Dynamic Joystick
-        };
-        int dropdownValue = movementDropdown.value;
-        movementDropdownText.text = tooltips[dropdownValue];
-        FindObjectOfType<Movement>().SetMovementModePref(dropdownValue);
+            };
+        movementDropdownTooltip.text = tooltips[dropdownValue];
     }
 
     private void ResetCurrentSelected() {
@@ -185,6 +192,7 @@ public class PauseMenu : MonoBehaviour {
         }
         initialMusicVolume = musicPlayer.MusicVolume;
         initialSfxVolume = musicPlayer.SfxVolume;
+        initialMoveMode = (int)movement.TouchConfig;
         optionsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsFirstButton);
@@ -198,11 +206,13 @@ public class PauseMenu : MonoBehaviour {
 
     public void ConfirmOptions() {
         SaveVolumeChanges(true);
+        SaveMovementModeChanges(true);
         CloseOptionsMenu();
     }
 
     public void CancelOptions() {
         SaveVolumeChanges(false);
+        SaveMovementModeChanges(false);
         CloseOptionsMenu();
     }
 
@@ -229,5 +239,13 @@ public class PauseMenu : MonoBehaviour {
             musicPlayer.AdjustMusicVolume();
         }
         musicPlayer.SavePlayerPrefs();
+    }
+
+    private void SaveMovementModeChanges(bool saveChanges) {
+        if (saveChanges) {
+            movement.SetMovementModePref(movementDropdown.value);
+        } else {
+            movementDropdown.value = initialMoveMode;
+        }
     }
 }
