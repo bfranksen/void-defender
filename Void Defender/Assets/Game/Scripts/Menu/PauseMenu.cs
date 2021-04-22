@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour {
 
     [Header("Dropdown")]
     [SerializeField] TMP_Dropdown movementDropdown;
+    [SerializeField] TextMeshProUGUI movementDropdownTitle;
     [SerializeField] TextMeshProUGUI movementDropdownTooltip;
 
     [Header("Utils")]
@@ -32,9 +33,6 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject scoreContainer;
     [SerializeField] GameObject shade;
 
-    GameObject recentSelectedObject;
-    GameObject lastSelectedObject;
-
     // General
     public static bool paused = false;
     MusicPlayer musicPlayer;
@@ -42,6 +40,8 @@ public class PauseMenu : MonoBehaviour {
     float initialSfxVolume;
     Movement movement;
     int initialMoveMode;
+    GameObject lastSelectedObject;
+    GameObject recentSelectedObject;
 
     // Called before the first update
     private void Start() {
@@ -56,8 +56,8 @@ public class PauseMenu : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        ResetCurrentSelected();
         HandleOpenCloseFromInput();
+        ResetCurrentSelected();
     }
 
     private void SetInitialVolumeSettings() {
@@ -128,26 +128,22 @@ public class PauseMenu : MonoBehaviour {
         mobilePauseButton.transform.Translate(botLeftOffset * 0.75f);
     }
 
-    public void UpdateDropdownTooltip() {
-        int dropdownValue = movementDropdown.value;
-        if (initialMoveMode == -1) {
-            initialMoveMode = dropdownValue;
-        }
-        string[] tooltips = { // Movement mode tooltips
-            "Follows your touch", // Follow
-            "Stationary joystick", // Fixed Joystick
-            "Joystick that moves with you" // Dynamic Joystick
-            };
-        movementDropdownTooltip.text = tooltips[dropdownValue];
-    }
-
     private void ResetCurrentSelected() {
-        GameObject selected = EventSystem.current.currentSelectedGameObject;
-        if (selected != recentSelectedObject) {
+        // GameObject selected = EventSystem.current.currentSelectedGameObject;
+        // if (selected != movementDropdown.gameObject) {
+        //     movementDropdownTitle.color = Color.white;
+        // } else {
+        //     movementDropdownTitle.color = new Color(1, 0.5607843f, 0);
+        // }
+        // if (!EventSystem.current.currentSelectedGameObject) {
+        //     if (!optionsMenu.activeInHierarchy) EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        //     else if (optionsMenu.activeInHierarchy) EventSystem.current.SetSelectedGameObject(optionsFirstButton);
+        // }
+        if (EventSystem.current.currentSelectedGameObject != recentSelectedObject) {
             lastSelectedObject = recentSelectedObject;
-            recentSelectedObject = selected;
+            recentSelectedObject = EventSystem.current.currentSelectedGameObject;
         }
-        if (!selected) {
+        if (!EventSystem.current.currentSelectedGameObject) {
             EventSystem.current.SetSelectedGameObject(lastSelectedObject);
         }
     }
@@ -195,6 +191,7 @@ public class PauseMenu : MonoBehaviour {
         initialMusicVolume = musicPlayer.MusicVolume;
         initialSfxVolume = musicPlayer.SfxVolume;
         initialMoveMode = (int)movement.TouchConfig;
+
         optionsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsFirstButton);
@@ -249,5 +246,18 @@ public class PauseMenu : MonoBehaviour {
         } else {
             movementDropdown.value = initialMoveMode;
         }
+    }
+
+    public void UpdateDropdownTooltip() {
+        int dropdownValue = movementDropdown.value;
+        if (initialMoveMode == -1) {
+            initialMoveMode = dropdownValue;
+        }
+        string[] tooltips = { // Movement mode tooltips
+            "Follows your touch", // Follow
+            "Stationary joystick", // Fixed Joystick
+            "Joystick that moves with you" // Dynamic Joystick
+            };
+        movementDropdownTooltip.text = tooltips[dropdownValue];
     }
 }

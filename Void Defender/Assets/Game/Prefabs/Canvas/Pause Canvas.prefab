@@ -849,9 +849,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1040,9 +1040,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2178,9 +2178,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2367,9 +2367,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2990,9 +2990,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3256,9 +3256,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.6252775, b: 0.1273585, a: 1}
-    m_PressedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
-    m_SelectedColor: {r: 1, g: 0.62352943, b: 0.1254902, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3853,7 +3853,7 @@ GameObject:
   - component: {fileID: 7498442146702875300}
   - component: {fileID: 7847374445039232216}
   m_Layer: 5
-  m_Name: Movement Text
+  m_Name: Movement Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4076,7 +4076,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_SelectedColor: {r: 1, g: 0.56078434, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -4297,7 +4297,7 @@ GameObject:
   - component: {fileID: 518097787824430868}
   - component: {fileID: 8502900656077047094}
   m_Layer: 5
-  m_Name: Movement Description Text
+  m_Name: Movement Tooltip Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4799,6 +4799,7 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 484962085497870347}
   sfxVolumeSlider: {fileID: 484962087252288226}
   movementDropdown: {fileID: 8256521967544794371}
+  movementDropdownTitle: {fileID: 7847374445039232216}
   movementDropdownTooltip: {fileID: 8502900656077047094}
   healthContainer: {fileID: 0}
   livesContainer: {fileID: 0}
