@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour {
     [SerializeField] GameObject innerCircle;
     [SerializeField] GameObject outerCircle;
 
-
     public static string PLAYER_MOVEMENT_KEY = "playerMove";
 
     // Touch
@@ -27,11 +26,9 @@ public class Movement : MonoBehaviour {
     SpriteRenderer innerCircleSR;
 
     // Player 
-    TouchConfigType touchConfig;
     Player player;
+    TouchConfigType touchConfig;
     Vector3 respawnPos;
-    float xPadding = 0.5f;
-    float yPadding = 0.5f;
 
     // General
     public static bool pauseCheck = true;
@@ -77,14 +74,15 @@ public class Movement : MonoBehaviour {
 
         Vector3 bottomLeftWorldCoordinates = gameCamera.ViewportToWorldPoint(Vector3.zero);
         Vector3 topRightWorldCoordinates = gameCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));
-        Vector3 movementRangeMin = bottomLeftWorldCoordinates + renderer.bounds.extents;
-        Vector3 movementRangeMax = topRightWorldCoordinates - renderer.bounds.extents;
+        Vector3 extents = renderer.bounds.extents;
+        Vector3 movementRangeMin = bottomLeftWorldCoordinates + extents;
+        Vector3 movementRangeMax = topRightWorldCoordinates - extents;
 
         RespawnPos = gameCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.1f, 0));
-        xMin = movementRangeMin.x + xPadding;
-        xMax = movementRangeMax.x - xPadding;
-        yMin = movementRangeMin.y + yPadding;
-        yMax = movementRangeMax.y - yPadding * 4;
+        xMin = movementRangeMin.x;
+        xMax = movementRangeMax.x;
+        yMin = movementRangeMin.y + extents.y * 2;
+        yMax = movementRangeMax.y - extents.y * 8;
     }
 
     private void ResizeAndReposJoystick() {

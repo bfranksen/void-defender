@@ -174,9 +174,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.BeeneticGames.VoidDefender
   buildNumber:
-    Standalone: 43
-    iPhone: 43
-  AndroidBundleVersionCode: 16
+    Standalone: 44
+    iPhone: 44
+  AndroidBundleVersionCode: 17
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -604,7 +604,7 @@ PlayerSettings:
   ps4ContentID: ED1633-NPXX51362_00-0000000000000000
   ps4Category: 0
   ps4MasterVersion: 01.00
-  ps4AppVersion: 42
+  ps4AppVersion: 43
   ps4AppType: 0
   ps4ParamSfxPath: 
   ps4VideoOutPixelFormat: 0
@@ -767,7 +767,7 @@ PlayerSettings:
   XboxOneGameOsOverridePath: 
   XboxOnePackagingOverridePath: 
   XboxOneAppManifestOverridePath: 
-  XboxOneVersion: 42
+  XboxOneVersion: 43
   XboxOnePackageEncryption: 0
   XboxOnePackageUpdateGranularity: 2
   XboxOneDescription: 
