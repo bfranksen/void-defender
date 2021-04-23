@@ -7,13 +7,19 @@ public class BuildIncrementor : IPreprocessBuildWithReport {
 
     public int callbackOrder => 1;
 
+    public static int newBuildNumber;
+
     public void OnPreprocessBuild(BuildReport report) {
-        Debug.Log("In Pre - Dev Build: " + Debug.isDebugBuild);
-        if (Debug.isDebugBuild) {
-            RunDevBuildProcess();
-        } else {
-            RunPreBuildProcess();
-        }
+        Debug.Log("pre bef newBuildNumber: " + newBuildNumber);
+        newBuildNumber = ++PlayerSettings.Android.bundleVersionCode;
+        Debug.Log("pre aft newBuildNumber: " + newBuildNumber);
+        UpdateAllPlatformVersions();
+#if DEVELOPMENT_BUILD
+        Debug.Log("Pre Dev Build");
+#else
+        Debug.Log("Pre Prod Build");
+        RunProdBuildProcess();
+#endif
 
         BuildScriptableObject buildScriptableObject = ScriptableObject.CreateInstance<BuildScriptableObject>();
         buildScriptableObject.BuildNumber = PlayerSettings.Android.bundleVersionCode.ToString();
@@ -23,16 +29,13 @@ public class BuildIncrementor : IPreprocessBuildWithReport {
         AssetDatabase.SaveAssets();
     }
 
-    private void RunDevBuildProcess() {
-        PlayerSettings.macOS.buildNumber = IncrementBuildNumber(PlayerSettings.macOS.buildNumber);
-        PlayerSettings.iOS.buildNumber = IncrementBuildNumber(PlayerSettings.iOS.buildNumber);
-        PlayerSettings.Android.bundleVersionCode++;
-        // PlayerSettings.PS4.appVersion = IncrementBuildNumber(PlayerSettings.PS4.appVersion);
-        // PlayerSettings.XboxOne.Version = IncrementBuildNumber(PlayerSettings.XboxOne.Version);
-        // PlayerSettings.WSA.packageVersion = new System.Version(PlayerSettings.WSA.packageVersion.Major, PlayerSettings.WSA.packageVersion.Minor, PlayerSettings.WSA.packageVersion.Build + 1);
+    private void UpdateAllPlatformVersions() {
+        PlayerSettings.macOS.buildNumber = newBuildNumber.ToString();
+        PlayerSettings.iOS.buildNumber = newBuildNumber.ToString();
     }
 
-    private void RunPreBuildProcess() {
+    private void RunProdBuildProcess() {
+        Debug.Log("Pre VC: " + PlayerSettings.Android.bundleVersionCode);
         int major, minor, build, version = -1;
         bool majorSuccess = int.TryParse(Application.version.Split('.')[0], out major);
         bool minorSuccess = int.TryParse(Application.version.Split('.')[1], out minor);
@@ -43,10 +46,17 @@ public class BuildIncrementor : IPreprocessBuildWithReport {
         if (version != -1) {
             PlayerSettings.Android.bundleVersionCode = version;
         }
+        Debug.Log("Post VC: " + PlayerSettings.Android.bundleVersionCode);
     }
 
-    private string IncrementBuildNumber(string buildNumber) {
-        int.TryParse(buildNumber, out int outputBuildNumber);
-        return (outputBuildNumber + 1).ToString();
-    }
+
+
+    // Keepsakes for a time where build numbers aren't the same between platforms
+    // PlayerSettings.macOS.buildNumber = IncrementBuildNumber(PlayerSettings.macOS.buildNumber);
+    // PlayerSettings.WSA.packageVersion = new System.Version(PlayerSettings.WSA.packageVersion.Major, PlayerSettings.WSA.packageVersion.Minor, PlayerSettings.WSA.packageVersion.Build + 1);
+
+    // private string IncrementBuildNumber(string buildNumber) {
+    //     int.TryParse(buildNumber, out int outputBuildNumber);
+    //     return (outputBuildNumber + 1).ToString();
+    // }
 }

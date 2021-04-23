@@ -27,8 +27,10 @@ public class GameSession : MonoBehaviour {
     public int Score { get => score; set => score = value; }
 
     private void Awake() {
-        ActivatePlatformAndLogIn();
         SetUpSingleton();
+        if (_instance = this) {
+            ActivatePlatformAndLogIn();
+        }
     }
 
     private void SetUpSingleton() {
