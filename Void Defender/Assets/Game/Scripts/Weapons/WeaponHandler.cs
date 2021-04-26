@@ -21,8 +21,12 @@ public class WeaponHandler : MonoBehaviour {
     bool isMobile = false;
     bool firingInput = false;
     bool puDamage;
+    BossGunPos bossGunPos;
+    GameObject projectileParent;
+    private const string PROJECTILE_PARENT_NAME = "Projectiles";
 
     private void Start() {
+        CreateProjectileParent();
         SetUpFields();
         for (int index = 0; index < weapons.Count; index++) {
             SetUpCoroutines(index);
@@ -49,6 +53,13 @@ public class WeaponHandler : MonoBehaviour {
         }
     }
 
+    private void CreateProjectileParent() {
+        projectileParent = GameObject.Find(PROJECTILE_PARENT_NAME);
+        if (!projectileParent) {
+            projectileParent = new GameObject(PROJECTILE_PARENT_NAME);
+        }
+    }
+
     private void SetUpFields() {
         musicPlayer = FindObjectOfType<MusicPlayer>();
         player = GetComponent<Player>();
@@ -65,6 +76,7 @@ public class WeaponHandler : MonoBehaviour {
             xMin = Camera.main.ViewportToWorldPoint(new Vector3(0.025f, 0, 0)).x;
             xMax = Camera.main.ViewportToWorldPoint(new Vector3(0.975f, 0, 0)).x;
             player = FindObjectOfType<Player>();
+            bossGunPos = GetComponent<BossGunPos>();
         }
         shotCounter = new List<float>();
         shotReady = new List<bool>();
@@ -90,10 +102,11 @@ public class WeaponHandler : MonoBehaviour {
     private void GetInput() {
         puDamage = player.PuDamage;
         if (!isMobile) {
-            if (!firingInput && Input.GetButtonDown("Fire1")) {
+            Debug.Log(Input.GetAxis("Fire1"));
+            if (!firingInput && Input.GetAxis("Fire1") > 0) {
                 firingInput = true;
             }
-            if (firingInput && Input.GetButtonUp("Fire1")) {
+            if (firingInput && Input.GetAxis("Fire1") <= 0) {
                 firingInput = false;
             }
         }
@@ -139,6 +152,7 @@ public class WeaponHandler : MonoBehaviour {
             GameObject laser = Instantiate(weapon.ProjectilePrefab, transform.position, Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, weapon.ProjectileSpeed);
             musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
+            laser.transform.parent = projectileParent.transform;
             if (puDamage) {
                 yield return new WaitForSeconds(weapon.MinTimeBetweenShots / 1.5f);
             } else {
@@ -152,6 +166,7 @@ public class WeaponHandler : MonoBehaviour {
         musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
         CreateLaser(weapon, index);
         shotCounter[index] = GetNewShotCooldown(index);
+        shotCounter[index] *= 0.75f;
         yield return new WaitForSeconds(shotCounter[index]);
         firingCoroutines[index] = null;
         shotReady[index] = true;
@@ -166,25 +181,17 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     private void GetJacksLaser(Weapon weapon, int index) {
-        GameObject laser;
-        Vector3 offset;
-        Renderer renderer = GetComponent<Renderer>();
-        offset = new Vector3(renderer.bounds.extents.x / 3, renderer.bounds.extents.y, 0);
-        offset.y *= IsPlayerBelow() ? -1 : 1;
-        if (index == 1) {
-            offset.x *= -1;
-            laser = Instantiate(weapon.ProjectilePrefab, transform.position + offset, transform.rotation) as GameObject;
-        } else {
-            laser = Instantiate(weapon.ProjectilePrefab, transform.position + offset, transform.rotation) as GameObject;
-        }
+        GameObject laser = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, transform.rotation) as GameObject;
         var vector = GetVelocityVector(weapon, true);
         laser.GetComponent<Rigidbody2D>().velocity = vector;
+        laser.transform.parent = projectileParent.transform;
     }
 
     private void GetLaser(Weapon weapon) {
         var laser = Instantiate(weapon.ProjectilePrefab, transform.position, transform.rotation) as GameObject;
         var vector = GetVelocityVector(weapon, false);
         laser.GetComponent<Rigidbody2D>().velocity = vector;
+        laser.transform.parent = projectileParent.transform;
     }
 
     private Vector2 GetVelocityVector(Weapon weapon, bool jacksLaser) {
@@ -193,9 +200,9 @@ public class WeaponHandler : MonoBehaviour {
         }
         if (jacksLaser) {
             if (IsPlayerBelow()) {
-                return new Vector2(0, -weapon.ProjectileSpeed * 2.25f);
+                return new Vector2(0, -weapon.ProjectileSpeed * 1.5f);
             } else {
-                return new Vector2(0, weapon.ProjectileSpeed * 2.25f);
+                return new Vector2(0, weapon.ProjectileSpeed * 1.5f);
             }
         }
         return new Vector2(0, -weapon.ProjectileSpeed);
@@ -213,7 +220,7 @@ public class WeaponHandler : MonoBehaviour {
         musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
         StartCoroutine(PreparingToFireAnimation());
         yield return new WaitForSeconds(0.5f);
-        int numProjectiles = 18;
+        int numProjectiles = Random.Range(12, 19);
         float rotationIncrement = Mathf.PI * 2.0f / numProjectiles;
         for (int i = 0; i < numProjectiles; i++) {
             FireSingleJack(weapon, i, rotationIncrement, 0);
@@ -225,11 +232,12 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     private void FireSingleJack(Weapon weapon, int index, float rotationIncrement, int rotationOffset) {
-        GameObject jack = Instantiate(weapon.ProjectilePrefab, transform.position, transform.rotation) as GameObject;
+        GameObject jack = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(weapons.IndexOf(weapon)).position, transform.rotation) as GameObject;
         float vx = Mathf.Cos(rotationIncrement * index + rotationOffset) * weapon.ProjectileSpeed;
         float vy = Mathf.Sin(rotationIncrement * index + rotationOffset) * weapon.ProjectileSpeed;
         Vector2 vector = new Vector2(vx, vy);
         jack.GetComponent<Rigidbody2D>().velocity = vector;
+        jack.transform.parent = projectileParent.transform;
     }
 
     private IEnumerator PreparingToFireAnimation() {

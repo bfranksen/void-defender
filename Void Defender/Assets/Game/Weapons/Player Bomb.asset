@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da997401f5225a4eb907322d8837a55, type: 3}
-  m_Name: Enemy Bomb
+  m_Name: Player Bomb
   m_EditorClassIdentifier: 
-  weaponType: 4
-  projectilePrefab: {fileID: 1667952745024342093, guid: db9592db6394b65489f84a161c4f34d6,
-    type: 3}
-  projectileSpeed: 4.8
+  weaponType: 0
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 5
   minTimeBetweenShots: 1
-  maxTimeBetweenShots: 5
-  sfxClip: {fileID: 8300000, guid: 279fba303126e7344a478e13a65f366c, type: 3}
-  sfxVolume: 0.5
+  maxTimeBetweenShots: 3
+  sfxClip: {fileID: 0}
+  sfxVolume: 0.2

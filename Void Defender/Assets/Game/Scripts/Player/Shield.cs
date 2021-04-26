@@ -35,6 +35,7 @@ public class Shield : MonoBehaviour {
     private void Update() {
         if (player) {
             transform.position = player.transform.position;
+            transform.position += new Vector3(0, 0.1f, 0);
         }
         if (protectionTimeLeft > 0) {
             protectionTimeLeft -= Time.deltaTime;

@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &88364736
 Transform:
   m_ObjectHideFlags: 0
@@ -1329,12 +1329,12 @@ PrefabInstance:
     - target: {fileID: 5266438302873559272, guid: 0de250ae660c17748b16fe6169659599,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5266438302873559272, guid: 0de250ae660c17748b16fe6169659599,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44
+      value: -1.78
       objectReference: {fileID: 0}
     - target: {fileID: 5266438302873559272, guid: 0de250ae660c17748b16fe6169659599,
         type: 3}
@@ -1807,6 +1807,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1002026607}
+    - target: {fileID: 5304492802759099632, guid: 6a95c085830078f44a52754ccefe729a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a95c085830078f44a52754ccefe729a, type: 3}
 --- !u!1001 &1707774453
@@ -2342,12 +2347,12 @@ PrefabInstance:
     - target: {fileID: 729049583864039776, guid: 02993a225e4b0a640b91573b476b3d94,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 729049583864039790, guid: 02993a225e4b0a640b91573b476b3d94,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 729049583864039790, guid: 02993a225e4b0a640b91573b476b3d94,
         type: 3}
@@ -2411,7 +2416,7 @@ PrefabInstance:
     - target: {fileID: 7606155510706527348, guid: b08eb5551815b3a448d54c48c0bf53f0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7606155510706527348, guid: b08eb5551815b3a448d54c48c0bf53f0,
         type: 3}
@@ -2471,7 +2476,7 @@ PrefabInstance:
     - target: {fileID: 7963710386918388522, guid: b08eb5551815b3a448d54c48c0bf53f0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b08eb5551815b3a448d54c48c0bf53f0, type: 3}

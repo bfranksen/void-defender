@@ -11,20 +11,30 @@ public class EnemySpawner : MonoBehaviour {
 
     [Header("SFX")]
     [SerializeField] AudioClip bossWaveSFX;
-    [SerializeField] [Range(0, 1)] float bossWaveSFXVolume = 0.25f;
+    [SerializeField] [Range(0, 1)] float bossWaveSFXVolume = 0.33f;
 
     private int waveCounter = 0;
     public static int loopCounter = 1;
     public static float gameModifier = 0f;
     public static int takeawayScoreScaling = 0;
+    GameObject enemyParent;
+    private const string ENEMY_PARENT_NAME = "EnemySpawner";
 
-    // Start is called before the first frame update
+
     private IEnumerator Start() {
+        CreateProjectileParent();
         ShuffleWave(waveConfigs);
         do {
             yield return StartCoroutine(SpawnAllWaves());
             loopCounter++;
         } while (looping);
+    }
+
+    private void CreateProjectileParent() {
+        enemyParent = GameObject.Find(ENEMY_PARENT_NAME);
+        if (!enemyParent) {
+            enemyParent = new GameObject(ENEMY_PARENT_NAME);
+        }
     }
 
     private IEnumerator SpawnAllWaves() {
@@ -70,6 +80,7 @@ public class EnemySpawner : MonoBehaviour {
     private GameObject GetNewEnemy(WaveConfig waveConfig) {
         var enemy = Instantiate(waveConfig.EnemyPrefab, waveConfig.GetWaypoints()[0].transform.position, Quaternion.identity);
         enemy.GetComponent<EnemyPathing>().WaveConfig = waveConfig;
+        enemy.transform.parent = enemyParent.transform;
         return enemy;
     }
 

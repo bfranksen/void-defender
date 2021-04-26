@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine.SocialPlatforms;
 using UnityEngine;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
+// using GooglePlayGames;
+// using GooglePlayGames.BasicApi;
 
 public class GameSession : MonoBehaviour {
 
