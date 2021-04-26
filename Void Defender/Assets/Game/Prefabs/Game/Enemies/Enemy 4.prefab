@@ -61,11 +61,11 @@ MonoBehaviour:
   - {fileID: 5266438302873559275, guid: 0de250ae660c17748b16fe6169659599, type: 3}
   - {fileID: 5266438302873559275, guid: e212316f7bee9f541b5838a9c87b2587, type: 3}
   deathVFX: {fileID: 236302763395162906, guid: b43f45c3737137e4abe689a47e7f7c8f, type: 3}
+  spawnPrefab: {fileID: 0}
   hitSFX: {fileID: 8300000, guid: 635432d057a9c1d4380c44da587e5b61, type: 3}
   hitSFXVolume: 0.12
   deathSFX: {fileID: 8300000, guid: 05b6e12358c2851428e3fc360d789b82, type: 3}
   deathSFXVolume: 0.2
-  spawnPrefab: {fileID: 0}
 --- !u!114 &6347227057356103299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 895b5df6c6bce4246924737d1eb771bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a7f0402b507417479c92ed97777cf55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,7 +170,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.94545454, y: 0.76363635}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 0.93, y: 0.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -178,22 +178,31 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.23636363, y: -0.38181818}
-      - {x: 0.25454545, y: -0.37272727}
-      - {x: 0.47272727, y: 0.027272727}
-      - {x: 0.47272727, y: 0.16363636}
-      - {x: 0.26363635, y: 0.23636363}
-      - {x: 0.16363636, y: 0.3272727}
-      - {x: 0.045454543, y: 0.38181818}
-      - {x: -0.07272727, y: 0.38181818}
-      - {x: -0.3363636, y: 0.19999999}
-      - {x: -0.47272727, y: 0.16363636}
-      - {x: -0.47272727, y: 0.018181818}
-      - {x: -0.24545453, y: -0.37272727}
-      - {x: -0.23636363, y: -0.38181818}
-      - {x: -0.027272727, y: -0.38181818}
-      - {x: 0.027272727, y: -0.3181818}
-      - {x: 0.045454543, y: -0.38181818}
+    - - {x: 0.38, y: -0.45}
+      - {x: 0.42999998, y: -0.41}
+      - {x: 0.58, y: -0.13}
+      - {x: 0.58, y: 0.41}
+      - {x: 0.45, y: 0.41}
+      - {x: 0.34, y: 0.37}
+      - {x: -0.089999996, y: 0.32}
+      - {x: -0.11, y: 0.29999998}
+      - {x: -0.35, y: 0.14}
+      - {x: -0.35, y: 0.35}
+      - {x: -0.35999998, y: 0.37}
+      - {x: -0.45999998, y: 0.41}
+      - {x: -0.57, y: 0.41}
+      - {x: -0.57, y: -0.12}
+      - {x: -0.55, y: -0.17}
+      - {x: -0.47, y: -0.31}
+      - {x: -0.38, y: -0.44}
+      - {x: -0.35, y: -0.42999998}
+      - {x: -0.17, y: -0.17}
+      - {x: -0.07, y: -0.45}
+      - {x: 0.06, y: -0.45}
+      - {x: 0.089999996, y: -0.44}
+      - {x: 0.16, y: -0.16}
+      - {x: 0.34, y: 0.04}
+      - {x: 0.35999998, y: -0.45}
 --- !u!50 &6555909013270961579
 Rigidbody2D:
   serializedVersion: 4
