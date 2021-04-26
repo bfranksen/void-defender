@@ -1,15 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spinner : MonoBehaviour {
 
     [SerializeField] float speedOfSpin = 360f;
-    private bool isBomb = false;
 
     private void Start() {
         if (gameObject.tag == "Bomb") {
-            isBomb = true;
             Vector3 target = FindObjectOfType<Player>().transform.position;
             target.z = 0f;
             Vector3 objectPos = transform.position;
@@ -22,8 +21,6 @@ public class Spinner : MonoBehaviour {
     }
 
     private void Update() {
-        if (!isBomb) {
-            transform.Rotate(0, 0, speedOfSpin * Time.deltaTime);
-        }
+        transform.Rotate(0, 0, speedOfSpin * Time.deltaTime);
     }
 }

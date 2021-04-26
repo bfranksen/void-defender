@@ -7,7 +7,9 @@ public class DamageDealer : MonoBehaviour {
     [SerializeField] int baseDamage = 100;
 
     public void Hit() {
-        Destroy(gameObject);
+        if (!GetComponent<BombExplosion>()) {
+            Destroy(gameObject);
+        }
     }
 
     public int BaseDamage { get => baseDamage; }

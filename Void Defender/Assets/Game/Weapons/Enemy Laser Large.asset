@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da997401f5225a4eb907322d8837a55, type: 3}
   m_Name: Enemy Laser Large
   m_EditorClassIdentifier: 
-  weaponType: 3
+  weaponType: 4
   projectilePrefab: {fileID: 1667952745024342093, guid: d39f42dc4dc641f4d8d1474302233896,
     type: 3}
   projectileSpeed: 4

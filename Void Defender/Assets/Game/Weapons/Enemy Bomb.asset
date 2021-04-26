@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da997401f5225a4eb907322d8837a55, type: 3}
   m_Name: Enemy Bomb
   m_EditorClassIdentifier: 
-  weaponType: 4
+  weaponType: 5
   projectilePrefab: {fileID: 1667952745024342093, guid: db9592db6394b65489f84a161c4f34d6,
     type: 3}
   projectileSpeed: 4.8

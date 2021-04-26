@@ -18,8 +18,14 @@ public class WeaponHandler : MonoBehaviour {
 
     // Player
     Player player;
+    Movement movement;
     bool isMobile = false;
     bool firingInput = false;
+    bool bombBeingAimed = false;
+    bool bombFired = false;
+    Coroutine aimingCoroutine;
+    [SerializeField] GameObject crosshairPrefab;
+    GameObject crosshair;
     bool puDamage;
     BossGunPos bossGunPos;
     GameObject projectileParent;
@@ -66,8 +72,8 @@ public class WeaponHandler : MonoBehaviour {
         enemy = GetComponent<Enemy>();
         if (player) {
             weapons = player.Weapons;
+            movement = player.GetComponent<Movement>();
 #if UNITY_ANDROID || UNITY_IOS
-            // Debug.Log("Mobile: Auto-firing enabled");
             isMobile = true;
             firingInput = true;
 #endif
@@ -102,22 +108,66 @@ public class WeaponHandler : MonoBehaviour {
     private void GetInput() {
         puDamage = player.PuDamage;
         if (!isMobile) {
-            Debug.Log(Input.GetAxis("Fire1"));
             if (!firingInput && Input.GetAxis("Fire1") > 0) {
                 firingInput = true;
             }
             if (firingInput && Input.GetAxis("Fire1") <= 0) {
                 firingInput = false;
             }
+
+            if (shotReady[1] && shotCounter[1] <= 0 && bombBeingAimed && !bombFired && player.CanFire && Input.GetButtonDown("Fire2")) {
+                bombFired = true;
+                RemoveCrosshair();
+            }
+            if (shotReady[1] && shotCounter[1] <= 0 && bombBeingAimed && !bombFired) {
+                crosshair.transform.position = movement.AimCrosshair(crosshair);
+            }
+            if (shotReady[1] && shotCounter[1] <= 0 && !bombBeingAimed && !bombFired && player.CanFire && Input.GetButtonDown("Fire2")) {
+                ReadyCrosshair();
+            }
+        }
+    }
+
+    private void ReadyCrosshair() {
+        bombBeingAimed = true;
+        crosshair = Instantiate(crosshairPrefab, Vector2.zero, Quaternion.identity) as GameObject;
+        if (aimingCoroutine == null) {
+            aimingCoroutine = StartCoroutine(AimTimer());
+        }
+    }
+
+    private void RemoveCrosshair() {
+        Crosshair.targetedPosition = crosshair.transform.position;
+        bombBeingAimed = false;
+        if (aimingCoroutine != null) {
+            StopCoroutine(aimingCoroutine);
+            aimingCoroutine = null;
+        }
+    }
+
+    private IEnumerator AimTimer() {
+        yield return new WaitForSeconds(5f);
+        bombBeingAimed = false;
+        bombFired = false;
+        Destroy(crosshair);
+        if (aimingCoroutine != null) {
+            aimingCoroutine = null;
         }
     }
 
     private void PlayerWeapons(int index) {
-        if (firingCoroutines[index] == null && firingInput && player.CanFire) {
-            firingCoroutines[index] = StartCoroutine(FireWeapon(index));
-        } else if (firingCoroutines[index] != null && (!firingInput || !player.CanFire)) {
-            StopCoroutine(firingCoroutines[index]);
-            firingCoroutines[index] = null;
+        if (index == 0) {
+            if (firingCoroutines[index] == null && firingInput && player.CanFire) {
+                firingCoroutines[index] = StartCoroutine(FireWeapon(index));
+            } else if (firingCoroutines[index] != null && (!firingInput || !player.CanFire)) {
+                StopCoroutine(firingCoroutines[index]);
+                firingCoroutines[index] = null;
+            }
+        } else if (index == 1) {
+            if (firingCoroutines[index] == null && shotReady[1] && bombFired && player.CanFire) {
+                firingCoroutines[index] = StartCoroutine(FireWeapon(index));
+                shotReady[1] = false;
+            }
         }
     }
 
@@ -135,6 +185,8 @@ public class WeaponHandler : MonoBehaviour {
         switch (weapons[index].WeaponType) {
             case WeaponType.PlayerLaser:
                 return FirePlayerLaser(weapons[index]);
+            case WeaponType.PlayerBomb:
+                return FirePlayerBomb(weapons[index]);
             case WeaponType.SmallLaser:
             case WeaponType.NormalLaser:
             case WeaponType.LargeLaser:
@@ -159,6 +211,19 @@ public class WeaponHandler : MonoBehaviour {
                 yield return new WaitForSeconds(weapon.MinTimeBetweenShots);
             }
         }
+    }
+
+    private IEnumerator FirePlayerBomb(Weapon weapon) {
+        GameObject playerBomb = Instantiate(weapon.ProjectilePrefab, transform.position, Quaternion.identity) as GameObject;
+        playerBomb.GetComponent<Rigidbody2D>().velocity = GetBombVelocityVector(weapon, transform.position, crosshair.transform.position);
+        musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
+        playerBomb.transform.parent = projectileParent.transform;
+        Destroy(crosshair, 0.1f);
+        shotCounter[1] = weapon.MinTimeBetweenShots;
+        yield return new WaitForSeconds(weapon.MinTimeBetweenShots);
+        firingCoroutines[1] = null;
+        shotReady[1] = true;
+        bombFired = false;
     }
 
     private IEnumerator FireLaserOrBomb(int index) {
@@ -196,7 +261,7 @@ public class WeaponHandler : MonoBehaviour {
 
     private Vector2 GetVelocityVector(Weapon weapon, bool jacksLaser) {
         if (player && weapon.WeaponType == WeaponType.Bomb) {
-            return GetBombVelocityVector(weapon);
+            return GetBombVelocityVector(weapon, transform.position, player.transform.position);
         }
         if (jacksLaser) {
             if (IsPlayerBelow()) {
@@ -208,9 +273,9 @@ public class WeaponHandler : MonoBehaviour {
         return new Vector2(0, -weapon.ProjectileSpeed);
     }
 
-    private Vector2 GetBombVelocityVector(Weapon weapon) {
-        float xDiff = player.transform.position.x - transform.position.x;
-        float yDiff = player.transform.position.y - transform.position.y;
+    private Vector2 GetBombVelocityVector(Weapon weapon, Vector3 sourcePos, Vector3 targetPos) {
+        float xDiff = targetPos.x - sourcePos.x;
+        float yDiff = targetPos.y - sourcePos.y;
         float distance = Mathf.Sqrt(Mathf.Pow(xDiff, 2f) + Mathf.Pow(yDiff, 2f));
         return new Vector2(xDiff * weapon.ProjectileSpeed / distance, yDiff * weapon.ProjectileSpeed / distance);
     }
@@ -254,5 +319,15 @@ public class WeaponHandler : MonoBehaviour {
     private bool IsPlayerBelow() {
         if (!player) return 0 < transform.position.y;
         return player.transform.position.y < transform.position.y;
+    }
+    public float GetPlayerBombCooldown() {
+        if (weapons != null) {
+            return weapons[1].MinTimeBetweenShots;
+        } else {
+            return -1;
+        }
+    }
+    public float GetPlayBombCooldownRemaining() {
+        return shotCounter[1];
     }
 }

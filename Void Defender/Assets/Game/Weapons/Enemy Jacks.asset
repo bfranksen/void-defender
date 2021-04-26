@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da997401f5225a4eb907322d8837a55, type: 3}
   m_Name: Enemy Jacks
   m_EditorClassIdentifier: 
-  weaponType: 5
+  weaponType: 6
   projectilePrefab: {fileID: 1667952745024342093, guid: d7229a780f4b1a2498bb827913604c4d,
     type: 3}
   projectileSpeed: 3.6

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType { PlayerLaser, SmallLaser, NormalLaser, LargeLaser, Bomb, Jacks };
+public enum WeaponType { PlayerLaser, PlayerBomb, SmallLaser, NormalLaser, LargeLaser, Bomb, Jacks };
 
 [CreateAssetMenu(menuName = "Weapon Config")]
 public class Weapon : ScriptableObject {

@@ -469,11 +469,28 @@ PrefabInstance:
       propertyPath: initialMoveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3255404333294841164, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
+        type: 3}
+      propertyPath: crosshairPrefab
+      value: 
+      objectReference: {fileID: 2191614522214879494, guid: 14cb4824f7edb664ba8a4a9c0f294529,
+        type: 3}
     - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: dm_Invulnerable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
+        type: 3}
+      propertyPath: weapons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
+        type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d49cca79b36b1ff46a3260963408d756,
+        type: 2}
     - target: {fileID: 5354372056648676997, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: m_RootOrder

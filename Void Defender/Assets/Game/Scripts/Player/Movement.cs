@@ -188,6 +188,21 @@ public class Movement : MonoBehaviour {
         player.transform.position = new Vector2(newXPos, newYPos);
     }
 
+    public Vector2 AimCrosshair(GameObject crosshair) {
+        Vector3 bottomLeftWorldCoordinates = gameCamera.ViewportToWorldPoint(Vector3.zero);
+        Vector3 topRightWorldCoordinates = gameCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        Vector3 extents = crosshair.GetComponent<Renderer>().bounds.extents;
+        Vector3 movementRangeMin = bottomLeftWorldCoordinates + extents;
+        Vector3 movementRangeMax = topRightWorldCoordinates - extents;
+
+        var aimSpeed = 2f;
+        var deltaX = Input.GetAxis("Aim Horizontal") * aimSpeed * fixedDeltaTime;
+        var deltaY = Input.GetAxis("Aim Vertical") * aimSpeed * fixedDeltaTime;
+        var newXPos = Mathf.Clamp(crosshair.transform.position.x + deltaX, movementRangeMin.x, movementRangeMax.x);
+        var newYPos = Mathf.Clamp(crosshair.transform.position.y + deltaY, movementRangeMin.y, movementRangeMax.y);
+        return new Vector2(newXPos, newYPos);
+    }
+
     public void SetMovementModePref(int mode) {
         TouchConfig = (TouchConfigType)mode;
         PlayerPrefs.SetInt(PLAYER_MOVEMENT_KEY, mode);
