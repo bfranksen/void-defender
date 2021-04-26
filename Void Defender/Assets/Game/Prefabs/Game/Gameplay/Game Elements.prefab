@@ -438,6 +438,11 @@ PrefabInstance:
       propertyPath: initialMoveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
+        type: 3}
+      propertyPath: dm_Invulnerable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5354372056648676997, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: m_RootOrder
