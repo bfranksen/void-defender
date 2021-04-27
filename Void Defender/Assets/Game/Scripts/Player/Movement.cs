@@ -195,7 +195,7 @@ public class Movement : MonoBehaviour {
         Vector3 movementRangeMin = bottomLeftWorldCoordinates + extents;
         Vector3 movementRangeMax = topRightWorldCoordinates - extents;
 
-        var aimSpeed = 2f;
+        var aimSpeed = 2.5f;
         var deltaX = Input.GetAxis("Aim Horizontal") * aimSpeed * fixedDeltaTime;
         var deltaY = Input.GetAxis("Aim Vertical") * aimSpeed * fixedDeltaTime;
         var newXPos = Mathf.Clamp(crosshair.transform.position.x + deltaX, movementRangeMin.x, movementRangeMax.x);

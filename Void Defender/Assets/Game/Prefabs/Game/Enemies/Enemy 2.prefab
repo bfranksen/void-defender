@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af4c6839f5fb914abcfa3061086ec15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 250
   scoreValue: 150
   weapons:
   - {fileID: 11400000, guid: f4f27f786bd037f41a1461e83993d56f, type: 2}
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da553d3ea4102642becf17228671f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crosshairPrefab: {fileID: 0}
 --- !u!114 &602096301338014603
 MonoBehaviour:
   m_ObjectHideFlags: 0

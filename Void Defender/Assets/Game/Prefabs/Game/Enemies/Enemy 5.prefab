@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af4c6839f5fb914abcfa3061086ec15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 650
   scoreValue: 450
   weapons:
   - {fileID: 11400000, guid: bb42df39d67163c4ea75f39f60659b09, type: 2}
@@ -240,3 +240,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da553d3ea4102642becf17228671f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crosshairPrefab: {fileID: 0}

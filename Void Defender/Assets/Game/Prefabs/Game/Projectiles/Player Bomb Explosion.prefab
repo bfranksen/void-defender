@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da4209ee1f33b14da3cb4982260cf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionSpeed: 8
+  explosionSpeed: 7.6
   explosionTime: 0.28
 --- !u!114 &6921660911524991274
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa474e6d07e8df5449fe5d2a0b742bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 200
+  baseDamage: 300
 --- !u!58 &3782048611793029710
 CircleCollider2D:
   m_ObjectHideFlags: 0

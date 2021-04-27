@@ -31,7 +31,7 @@ public class PlayerBomb : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 9) { // Enemy
+        if (other.gameObject.layer == 9 || other.gameObject.layer == 13) { // Enemy or Boss
             CreateExplosion();
         }
     }

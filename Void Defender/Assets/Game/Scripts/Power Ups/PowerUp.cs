@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour {
     [Header("Values")]
     [SerializeField] public static int laserDamage = 2;
     [SerializeField] public static int pointMod = 2;
-    [SerializeField] public static int zapDamage = 120;
+    [SerializeField] public static int zapDamage = 150;
 
     [Header("Probabilities")]
     [SerializeField] static float puDamageOdds = 0.055f; // 55/1000 .055

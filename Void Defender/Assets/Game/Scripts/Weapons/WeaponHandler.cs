@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WeaponHandler : MonoBehaviour {
 
@@ -125,6 +126,11 @@ public class WeaponHandler : MonoBehaviour {
             if (shotReady[1] && shotCounter[1] <= 0 && !bombBeingAimed && !bombFired && player.CanFire && Input.GetButtonDown("Fire2")) {
                 ReadyCrosshair();
             }
+
+            if (bombBeingAimed && Input.GetButtonDown("Cancel")) {
+                bombFired = false;
+                RemoveCrosshair();
+            }
         }
     }
 
@@ -139,6 +145,7 @@ public class WeaponHandler : MonoBehaviour {
     private void RemoveCrosshair() {
         Crosshair.targetedPosition = crosshair.transform.position;
         bombBeingAimed = false;
+        Destroy(crosshair);
         if (aimingCoroutine != null) {
             StopCoroutine(aimingCoroutine);
             aimingCoroutine = null;
@@ -146,7 +153,7 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     private IEnumerator AimTimer() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         bombBeingAimed = false;
         bombFired = false;
         Destroy(crosshair);
@@ -215,10 +222,9 @@ public class WeaponHandler : MonoBehaviour {
 
     private IEnumerator FirePlayerBomb(Weapon weapon) {
         GameObject playerBomb = Instantiate(weapon.ProjectilePrefab, transform.position, Quaternion.identity) as GameObject;
-        playerBomb.GetComponent<Rigidbody2D>().velocity = GetBombVelocityVector(weapon, transform.position, crosshair.transform.position);
+        playerBomb.GetComponent<Rigidbody2D>().velocity = GetBombVelocityVector(weapon, transform.position, Crosshair.targetedPosition);
         musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
         playerBomb.transform.parent = projectileParent.transform;
-        Destroy(crosshair, 0.1f);
         shotCounter[1] = weapon.MinTimeBetweenShots;
         yield return new WaitForSeconds(weapon.MinTimeBetweenShots);
         firingCoroutines[1] = null;

@@ -196,13 +196,13 @@ public class PauseMenu : MonoBehaviour {
 
     public void ConfirmOptions() {
         SaveVolumeChanges(true);
-        SaveMovementModeChanges(true);
+        if (movement) SaveMovementModeChanges(true);
         CloseOptionsMenu();
     }
 
     public void CancelOptions() {
         SaveVolumeChanges(false);
-        SaveMovementModeChanges(false);
+        if (movement) SaveMovementModeChanges(false);
         CloseOptionsMenu();
     }
 

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af4c6839f5fb914abcfa3061086ec15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
+  health: 350
   scoreValue: 150
   weapons: []
   powerUpPrefabs:
