@@ -1907,9 +1907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1319a467672cec147a584de5435e2a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathConfigs: []
   enemyConfigs: []
   bossConfigs: []
-  startingWave: 0
   looping: 1
   bossWaveSFX: {fileID: 8300000, guid: c97daa36ade85d649a276df91eb136bc, type: 3}
   bossWaveSFXVolume: 0.2

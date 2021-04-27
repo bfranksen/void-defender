@@ -19,6 +19,8 @@ TagManager:
   - BounceUp
   - BounceDown
   - Volume Slider
+  - Fireball
+  - Blast
   layers:
   - Default
   - TransparentFX

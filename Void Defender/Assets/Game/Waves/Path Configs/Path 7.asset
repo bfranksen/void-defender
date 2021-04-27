@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb67d6f12636054083e4072abe877d9, type: 3}
-  m_Name: Boss 1
+  m_Script: {fileID: 11500000, guid: 3cdadd87e1c95e549899742b511f90b1, type: 3}
+  m_Name: Path 7
   m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 9080900459871774951, guid: 261c5614501b61f428683cca9b163cf4,
+  pathPrefab: {fileID: 6150945793029212532, guid: 8b39596d6ca8c4e4288cc8a3c39a60a8,
     type: 3}
-  moveSpeed: 2.4
-  bossChance: 0.6
+  bossPath: 1

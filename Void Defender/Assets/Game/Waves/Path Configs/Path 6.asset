@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cdadd87e1c95e549899742b511f90b1, type: 3}
-  m_Name: Path 5
+  m_Name: Path 6
   m_EditorClassIdentifier: 
-  pathPrefab: {fileID: 6150945793029212532, guid: f5f5bc6352a0ecf48a752269a90e4036,
+  pathPrefab: {fileID: 6150945793029212532, guid: 702c94e7b4d42764b9e7965b819aa040,
     type: 3}
+  bossPath: 1

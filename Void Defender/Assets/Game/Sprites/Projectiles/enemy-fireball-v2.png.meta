@@ -1,0 +1,764 @@
+fileFormatVersion: 2
+guid: 09b64bdc3e823ea41a85700abb4484d8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8357714563701857013
+    second: enemy-fireball-v2_0
+  - first:
+      213: 1905504064658475132
+    second: enemy-fireball-v2_1
+  - first:
+      213: -488515375023280621
+    second: enemy-fireball-v2_2
+  - first:
+      213: -3985032747929142621
+    second: enemy-fireball-v2_3
+  - first:
+      213: -5873572802002893832
+    second: enemy-fireball-v2_4
+  - first:
+      213: -8168796657774844567
+    second: enemy-fireball-v2_5
+  - first:
+      213: -3375608976099201279
+    second: enemy-fireball-v2_6
+  - first:
+      213: -5610266373852770044
+    second: enemy-fireball-v2_7
+  - first:
+      213: -6322925157853390869
+    second: enemy-fireball-v2_8
+  - first:
+      213: 724611347290963938
+    second: enemy-fireball-v2_9
+  - first:
+      213: -4514293427738343596
+    second: enemy-fireball-v2_10
+  - first:
+      213: -9213318545449364982
+    second: enemy-fireball-v2_11
+  - first:
+      213: 7075058583159120666
+    second: enemy-fireball-v2_12
+  - first:
+      213: 5679985846511544434
+    second: enemy-fireball-v2_13
+  - first:
+      213: 7792198081233071590
+    second: enemy-fireball-v2_14
+  - first:
+      213: -1767945829485767726
+    second: enemy-fireball-v2_15
+  - first:
+      213: 9165639426506760595
+    second: enemy-fireball-v2_16
+  - first:
+      213: 6216441373825917279
+    second: enemy-fireball-v2_17
+  - first:
+      213: 3196985831624734891
+    second: enemy-fireball-v2_18
+  - first:
+      213: 6699328810889413801
+    second: enemy-fireball-v2_19
+  - first:
+      213: -1131915618344115222
+    second: enemy-fireball-v2_20
+  - first:
+      213: -7701402742607758124
+    second: enemy-fireball-v2_21
+  - first:
+      213: 3728844299379496883
+    second: enemy-fireball-v2_22
+  - first:
+      213: 8164147875004836931
+    second: enemy-fireball-v2_23
+  - first:
+      213: -5604935456940043240
+    second: enemy-fireball-v2_24
+  - first:
+      213: -135135536542103664
+    second: enemy-fireball-v2_25
+  - first:
+      213: 8539206294885612139
+    second: enemy-fireball-v2_26
+  - first:
+      213: -1614017314865559330
+    second: enemy-fireball-v2_27
+  - first:
+      213: 4741894373806821177
+    second: enemy-fireball-v2_28
+  - first:
+      213: -2775792856918042541
+    second: enemy-fireball-v2_29
+  - first:
+      213: -8883802726165302174
+    second: enemy-fireball-v2_30
+  - first:
+      213: -8229570458351071368
+    second: enemy-fireball-v2_31
+  - first:
+      213: -51742374619658090
+    second: enemy-fireball-v2_32
+  - first:
+      213: -7424750900802558935
+    second: enemy-fireball-v2_33
+  - first:
+      213: -6645155974935636859
+    second: enemy-fireball-v2_34
+  - first:
+      213: -6673510638140480200
+    second: enemy-fireball-v2_35
+  - first:
+      213: 6258045445228359784
+    second: enemy-fireball-v2_36
+  - first:
+      213: 5722786556482933951
+    second: enemy-fireball-v2_37
+  - first:
+      213: -517249626168307855
+    second: enemy-fireball-v2_38
+  - first:
+      213: 6927950925601736284
+    second: enemy-fireball-v2_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 46
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy-fireball-v2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fade875d119cf370800000000000000
+      internalID: 8357714563701857013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78080cd9d5b17a10800000000000000
+      internalID: 1905504064658475132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31eab6ccad17839f0800000000000000
+      internalID: -488515375023280621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa726154d152b8c0800000000000000
+      internalID: -3985032747929142621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_4
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f3c836f7a0ec7ea0800000000000000
+      internalID: -5873572802002893832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_5
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 138
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965aeea48ba92ae80800000000000000
+      internalID: -8168796657774844567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10facfe558d6721d0800000000000000
+      internalID: -3375608976099201279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_7
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401df2b15745422b0800000000000000
+      internalID: -5610266373852770044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_8
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be794c8b1157048a0800000000000000
+      internalID: -6322925157853390869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_9
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2efbe736e265e0a00800000000000000
+      internalID: 724611347290963938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_10
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45786c39b020a51c0800000000000000
+      internalID: -4514293427738343596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_11
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 93
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a02d8ffd897b32080800000000000000
+      internalID: -9213318545449364982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a13274ecb48af2260800000000000000
+      internalID: 7075058583159120666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_13
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2782196980d53de40800000000000000
+      internalID: 5679985846511544434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_14
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eda06bbed2732c60800000000000000
+      internalID: 7792198081233071590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_15
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d31e5392aef677e0800000000000000
+      internalID: -1767945829485767726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_16
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391204c2f74e23f70800000000000000
+      internalID: 9165639426506760595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_17
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 48
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f516fed4e7c354650800000000000000
+      internalID: 6216441373825917279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8f2fdeca9fd5c20800000000000000
+      internalID: 3196985831624734891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_19
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a48a961f0cc8fc50800000000000000
+      internalID: 6699328810889413801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_20
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3e1e40eb0aa40f0800000000000000
+      internalID: -1131915618344115222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_21
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dc35a6620f1f1590800000000000000
+      internalID: -7701402742607758124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_22
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7514f42248fb330800000000000000
+      internalID: 3728844299379496883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fireball-v2_23
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 3
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c6c6f9c31ec4170800000000000000
+      internalID: 8164147875004836931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

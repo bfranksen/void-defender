@@ -99,6 +99,9 @@ public class WeaponHandler : MonoBehaviour {
         if (initial) {
             shotCounter.Add(Random.Range(weapons[index].MinTimeBetweenShots, weapons[index].MaxTimeBetweenShots));
             shotReady.Add(true);
+            if (weapons[index].WeaponType == WeaponType.Fireball) {
+                shotCounter[index] = 0;
+            }
         } else {
             if (shotCounter[index] > 0) {
                 shotCounter[index] -= Time.deltaTime;
@@ -201,6 +204,10 @@ public class WeaponHandler : MonoBehaviour {
                 return FireLaserOrBomb(index);
             case WeaponType.Jacks:
                 return FireJacks(index);
+            case WeaponType.Blast:
+                return FireBlast(index);
+            case WeaponType.Fireball:
+                return SpawnFireballs(index);
             default:
                 return null;
         }
@@ -237,7 +244,7 @@ public class WeaponHandler : MonoBehaviour {
         musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
         CreateLaser(weapon, index);
         shotCounter[index] = GetNewShotCooldown(index);
-        shotCounter[index] *= 0.75f;
+        // shotCounter[index] *= 0.75f;
         yield return new WaitForSeconds(shotCounter[index]);
         firingCoroutines[index] = null;
         shotReady[index] = true;
@@ -309,6 +316,41 @@ public class WeaponHandler : MonoBehaviour {
         Vector2 vector = new Vector2(vx, vy);
         jack.GetComponent<Rigidbody2D>().velocity = vector;
         jack.transform.parent = projectileParent.transform;
+    }
+
+    private IEnumerator FireBlast(int index) {
+        Weapon weapon = weapons[index];
+        musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
+        GameObject blast = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, transform.rotation) as GameObject;
+        var vector = GetBombVelocityVector(weapon, bossGunPos.GetGunPosition(index).position, player.transform.position);
+        blast.GetComponent<Rigidbody2D>().velocity = vector;
+        blast.transform.parent = projectileParent.transform;
+        shotCounter[index] = GetNewShotCooldown(index);
+        yield return new WaitForSeconds(shotCounter[index]);
+        firingCoroutines[index] = null;
+        shotReady[index] = true;
+    }
+
+    private IEnumerator SpawnFireballs(int index) {
+        Weapon weapon = weapons[index];
+        musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
+        int numProjectiles = 8;
+        float rotationIncrement = Mathf.PI * 2.0f / numProjectiles;
+        Vector3 gunPos = bossGunPos.GetGunPosition(index).position;
+        for (int i = 0; i < numProjectiles; i++) {
+            SpawnSingleFireball(weapon, i, rotationIncrement, gunPos);
+        }
+        shotCounter[index] = GetNewShotCooldown(index);
+        yield return new WaitForSeconds(shotCounter[index]);
+        firingCoroutines[index] = null;
+        shotReady[index] = true;
+    }
+
+    private void SpawnSingleFireball(Weapon weapon, int index, float rotationIncrement, Vector3 gunPosition) {
+        GameObject fireball = Instantiate(weapon.ProjectilePrefab, gunPosition, transform.rotation) as GameObject;
+        float x = Mathf.Cos(rotationIncrement * index) * weapon.ProjectileSpeed;
+        float y = Mathf.Sin(rotationIncrement * index) * weapon.ProjectileSpeed;
+        fireball.transform.position += new Vector3(x, y, 0);
     }
 
     private IEnumerator PreparingToFireAnimation() {

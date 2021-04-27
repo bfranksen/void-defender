@@ -258,6 +258,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ef4d908bfba495469e27fcb63db50ae, type: 2}
   - {fileID: 11400000, guid: ce0bfe9a851a4dc40b6494fadd5b4340, type: 2}
   - {fileID: 11400000, guid: a4c70db2008ebff459c226f48e21ec4d, type: 2}
+  - {fileID: 11400000, guid: 8c4fce07ecf8f764f9d4531f9147920f, type: 2}
   enemyConfigs:
   - {fileID: 11400000, guid: 79748e2bba8647d4a84c6bbc36ff9971, type: 2}
   - {fileID: 11400000, guid: 978cf9207fa193e4bbb4df7dfeffe39b, type: 2}
@@ -267,9 +268,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f002506048c7f84c9cdc2b6b6a93531, type: 2}
   bossConfigs:
   - {fileID: 11400000, guid: e9d28225606e8b442af860486182ae13, type: 2}
+  - {fileID: 11400000, guid: 6220c6af79038c24ba6c2af7168cea5a, type: 2}
   looping: 1
   bossWaveSFX: {fileID: 8300000, guid: c97daa36ade85d649a276df91eb136bc, type: 3}
-  bossWaveSFXVolume: 0.2
+  bossWaveSFXVolume: 0.25
 --- !u!1 &7502645336904293954
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,12 +447,12 @@ PrefabInstance:
     - target: {fileID: -83765374823023741, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: currentMoveSpeed
-      value: 4
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: -83765374823023741, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: initialMoveSpeed
-      value: 4
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 3255404333294841164, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
@@ -461,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
       propertyPath: dm_Invulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5354372056648676996, guid: 5cb1cc1a59ad1d5498599de86ba265e6,
         type: 3}
