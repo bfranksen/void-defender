@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathing : MonoBehaviour {
+public class BossPathing : MonoBehaviour {
 
     GameSession gameSession;
-    EnemyWaveConfig waveConfig;
+    BossWaveConfig waveConfig;
     PathConfig pathConfig;
     List<Transform> waypoints;
     int waypointIndex = 0;
-    bool leaked = false;
 
-    public EnemyWaveConfig WaveConfig { get => waveConfig; set => waveConfig = value; }
+    public BossWaveConfig WaveConfig { get => waveConfig; set => waveConfig = value; }
     public PathConfig PathConfig { get => pathConfig; set => pathConfig = value; }
 
     private void Start() {
@@ -33,12 +32,9 @@ public class EnemyPathing : MonoBehaviour {
             if (transform.position == targetPosition) {
                 waypointIndex++;
             }
-        } else if (!leaked) {
-            leaked = true;
-            ResetEnemyPathing();
         } else {
-            Destroy(gameObject);
-            gameSession.Score -= Mathf.Min(gameSession.Score, 500 + 50 * EnemySpawner.takeawayScoreScaling);
+            gameSession.Score -= Mathf.Min(gameSession.Score, 1000 + 100 * EnemySpawner.takeawayScoreScaling);
+            ResetEnemyPathing();
         }
     }
 

@@ -251,39 +251,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1319a467672cec147a584de5435e2a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingWave: 0
-  waveConfigs:
+  pathConfigs:
+  - {fileID: 11400000, guid: 122b9611418fd7248bf57303cafd54c1, type: 2}
+  - {fileID: 11400000, guid: d266f933713b1804493d714e02a54931, type: 2}
+  - {fileID: 11400000, guid: deb54abc58fa7f945b34ce7f2b218120, type: 2}
+  - {fileID: 11400000, guid: 6ef4d908bfba495469e27fcb63db50ae, type: 2}
+  - {fileID: 11400000, guid: ce0bfe9a851a4dc40b6494fadd5b4340, type: 2}
+  - {fileID: 11400000, guid: a4c70db2008ebff459c226f48e21ec4d, type: 2}
+  enemyConfigs:
   - {fileID: 11400000, guid: 79748e2bba8647d4a84c6bbc36ff9971, type: 2}
-  - {fileID: 11400000, guid: a1ca33b55e383a542b5107e27bf1230c, type: 2}
-  - {fileID: 11400000, guid: 5dcebfe5eb8d5664eb35fea5923ff34d, type: 2}
-  - {fileID: 11400000, guid: c01c9a2100e012940959ec3d4e305b6a, type: 2}
-  - {fileID: 11400000, guid: 71d94e9c8e8431841b2fffce4666e583, type: 2}
-  - {fileID: 11400000, guid: 6bfcc2266b72adc4f8c7035dd9928d24, type: 2}
-  - {fileID: 11400000, guid: 151d5e34123a31b4891bffd15dadcbd3, type: 2}
-  - {fileID: 11400000, guid: 68778ebcbb6d014438ac418e811f8762, type: 2}
+  - {fileID: 11400000, guid: 978cf9207fa193e4bbb4df7dfeffe39b, type: 2}
+  - {fileID: 11400000, guid: f2d223d7d911998418137cfad621c99b, type: 2}
+  - {fileID: 11400000, guid: 6cf9db6868cc44944b0af44b96ea4060, type: 2}
   - {fileID: 11400000, guid: 1db8ca04d5a8a234fa4c4249125a9676, type: 2}
   - {fileID: 11400000, guid: 2f002506048c7f84c9cdc2b6b6a93531, type: 2}
-  - {fileID: 11400000, guid: c360651a83dd1e64c901fd63eeeb2959, type: 2}
-  - {fileID: 11400000, guid: f7eb16b1f5497c94cae2a724aa3b43fb, type: 2}
-  - {fileID: 11400000, guid: c8aa5472d30a91f4dad7acc4e93b803e, type: 2}
-  - {fileID: 11400000, guid: 0d105c9a5d3930c409ea44229f1336b5, type: 2}
-  - {fileID: 11400000, guid: f2d223d7d911998418137cfad621c99b, type: 2}
-  - {fileID: 11400000, guid: a7847dfa7d000da4fbb0573ef3241c62, type: 2}
-  - {fileID: 11400000, guid: 747fe6445a8a45c4e8bdc627e4b640c3, type: 2}
-  - {fileID: 11400000, guid: 3ce838e2f2da2f343a209558be8fc007, type: 2}
-  - {fileID: 11400000, guid: d046d6f543bed9143b363c28c09bbce3, type: 2}
-  - {fileID: 11400000, guid: 68caf1b7c66f149499714f18dec8a101, type: 2}
-  - {fileID: 11400000, guid: 819a084221dd95346a69afd46d1375f5, type: 2}
-  - {fileID: 11400000, guid: e2a0f8deb2622ff418bd3f9225c4de14, type: 2}
-  - {fileID: 11400000, guid: d589b2d659462f347a95c9fc0e06f79f, type: 2}
-  - {fileID: 11400000, guid: aebd99c30bd571440983bb96bf592f4c, type: 2}
-  - {fileID: 11400000, guid: 2ca3b8c71a110954e9b8d0e682293f21, type: 2}
-  - {fileID: 11400000, guid: 978cf9207fa193e4bbb4df7dfeffe39b, type: 2}
-  - {fileID: 11400000, guid: 6cf9db6868cc44944b0af44b96ea4060, type: 2}
-  - {fileID: 11400000, guid: 6d81a490709b67948bdf3fbb4cb33d9f, type: 2}
-  - {fileID: 11400000, guid: 0e0edb5245516aa418d168463db2bde0, type: 2}
-  - {fileID: 11400000, guid: fd1da811e4440f44a992f3fcf0e3f301, type: 2}
-  - {fileID: 11400000, guid: a1b82103c9bddef498ce8c18acbf3c8a, type: 2}
+  bossConfigs:
+  - {fileID: 11400000, guid: e9d28225606e8b442af860486182ae13, type: 2}
   looping: 1
   bossWaveSFX: {fileID: 8300000, guid: c97daa36ade85d649a276df91eb136bc, type: 3}
   bossWaveSFXVolume: 0.2

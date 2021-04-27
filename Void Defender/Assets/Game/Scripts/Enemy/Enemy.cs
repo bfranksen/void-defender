@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void ProcessDeath() {
-        int baseScore = scoreValue * EnemySpawner.loopCounter;
+        int baseScore = scoreValue * EnemySpawner.pointMultiplier;
         if (player.PuPoints) {
             FindObjectOfType<GameSession>().Score += baseScore * PowerUp.pointMod;
         } else {

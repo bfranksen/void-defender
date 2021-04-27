@@ -1907,9 +1907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1319a467672cec147a584de5435e2a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyConfigs: []
+  bossConfigs: []
   startingWave: 0
-  waveConfigs:
-  - {fileID: 11400000, guid: a1b82103c9bddef498ce8c18acbf3c8a, type: 2}
   looping: 1
   bossWaveSFX: {fileID: 8300000, guid: c97daa36ade85d649a276df91eb136bc, type: 3}
   bossWaveSFXVolume: 0.2
@@ -2665,11 +2665,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5958116407702336650, guid: d6e8438826593894fa27e6df229a70d9,
-        type: 3}
-      propertyPath: dm_Invulnerable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7313045302816590446, guid: d6e8438826593894fa27e6df229a70d9,
         type: 3}
       propertyPath: m_Name
