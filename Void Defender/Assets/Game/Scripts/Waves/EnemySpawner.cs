@@ -185,7 +185,7 @@ public class EnemySpawner : MonoBehaviour {
             }
         }
 
-        pathConfig = validPaths[Random.Range(0, validPaths.Count - 1)];
+        pathConfig = validPaths[Random.Range(0, validPaths.Count)];
         return pathConfig;
     }
 
@@ -195,7 +195,7 @@ public class EnemySpawner : MonoBehaviour {
         int minimumBetweenBossWaves = 15; // 15
         int wave = baseBetweenBossWaves - Mathf.FloorToInt(minimumBetweenBossWaves * gameLengthModifier);
         nextBossWave += Random.Range(wave - 3, wave + 4);
-        // nextBossWave = baseBetweenBossWaves;
+        // nextBossWave += 1;
     }
 
     private void WaveCountUpdates() {

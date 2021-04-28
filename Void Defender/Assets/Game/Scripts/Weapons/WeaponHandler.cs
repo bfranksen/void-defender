@@ -259,7 +259,7 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     private void GetJacksLaser(Weapon weapon, int index) {
-        GameObject laser = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, transform.rotation) as GameObject;
+        GameObject laser = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, Quaternion.identity) as GameObject;
         var vector = GetVelocityVector(weapon, true);
         laser.GetComponent<Rigidbody2D>().velocity = vector;
         laser.transform.parent = projectileParent.transform;

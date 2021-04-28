@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPrefab: {fileID: 3820600444775345486, guid: 968bc65e013d0c6468d9aceb887a4270,
     type: 3}
-  moveSpeed: 3.4
-  bossChance: 0.4
+  moveSpeed: 3.5
+  bossChance: 0.5

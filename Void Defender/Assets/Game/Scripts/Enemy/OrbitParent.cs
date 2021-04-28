@@ -22,7 +22,9 @@ public class OrbitParent : MonoBehaviour {
             transform.position = target.position + relativeDistance;
             transform.RotateAround(target.position, Vector3.forward, orbitDegreesPerSec * Time.deltaTime);
             relativeDistance = transform.position - target.position;
-            relativeDistance += relativeDistance * 0.001f;
+            if (Time.timeScale > 0) {
+                relativeDistance += relativeDistance * 0.001f;
+            }
         } else {
             Destroy(gameObject);
         }

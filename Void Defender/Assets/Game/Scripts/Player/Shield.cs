@@ -70,7 +70,7 @@ public class Shield : MonoBehaviour {
     }
 
     private void RespawnShieldCollision(Collider2D collider) {
-        if (collider.gameObject.layer == 13 || collider.gameObject.layer == 15 || (protectionTimeLeft < 2.25 && collider.gameObject.tag == "Jacks")) {
+        if (collider.gameObject.layer == 13 || collider.gameObject.layer == 15) {
             DestroyShield();
         } else {
             musicPlayer.PlayOneShot(respawnHitSFX, respawnHitSFXVolume);
