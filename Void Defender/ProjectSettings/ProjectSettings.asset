@@ -174,9 +174,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.BeeneticGames.VoidDefender
   buildNumber:
-    Standalone: 15
-    iPhone: 15
-  AndroidBundleVersionCode: 15
+    Standalone: 17
+    iPhone: 17
+  AndroidBundleVersionCode: 17
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
