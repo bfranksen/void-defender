@@ -19,6 +19,7 @@ public class GameSession : MonoBehaviour {
 #endif
 
     // PLAYER INFO
+    private string username;
     private int health = 200;
     private int lives = 2;
     private int score = 0;
@@ -27,7 +28,7 @@ public class GameSession : MonoBehaviour {
     public int Score { get => score; set => score = value; }
 
     private void Awake() {
-        PlayerPrefsController.CreateHighScoreKeys();
+        PlayerPrefsController.CreateKeys();
         SetUpSingleton();
         if (_instance = this) {
             ActivatePlatformAndLogIn();

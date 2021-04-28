@@ -16,10 +16,24 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] GameObject beforeExitButton;
     [SerializeField] GameObject exitButton;
     [SerializeField] GameObject mvButton;
+    [SerializeField] GameObject accountButton;
+    [SerializeField] GameObject firstAccountButton;
+    [SerializeField] GameObject lastAccountButton;
+
+
+    [Header("Account Menu")]
+    [SerializeField] GameObject accountMenu;
+    [SerializeField] GameObject accountDropdownGO;
+    [SerializeField] TMP_Dropdown accountDropdown;
+    [SerializeField] GameObject accountCreateUsernameGO;
+    [SerializeField] TMP_InputField accountCreateInput;
+    [SerializeField] TextMeshProUGUI accountCreateValidCheck;
+    [SerializeField] GameObject shade;
+    bool validUsername = false;
 
     GameObject recentSelectedObject;
     GameObject lastSelectedObject;
-    float buttonScale = 0.8f;
+    float buttonScale = 1.0f;
 
     MusicPlayer musicPlayer;
     float initialMusicVolume;
@@ -65,6 +79,7 @@ public class MainMenu : MonoBehaviour {
             btn.navigation = nav;
         }
     }
+
     private void ChangeButtonColorScheme() {
         foreach (Button button in FindObjectsOfType<Button>()) {
             if (button != firstButton.GetComponent<Button>()) {
@@ -78,8 +93,11 @@ public class MainMenu : MonoBehaviour {
 
     private void RepositionVolumeContainer() {
         float safeAreaDiff = Screen.height - Screen.safeArea.yMax;
-        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(safeAreaDiff / 2f + 32f, safeAreaDiff / -2f - 32f, 0));
+        mvButton.transform.parent.gameObject.transform.Translate(new Vector3(safeAreaDiff / 2f + 16f, safeAreaDiff / -2f - 16f, 0));
         mvButton.transform.parent.gameObject.transform.localScale = new Vector2(1.25f, 1.25f);
+
+        accountButton.transform.parent.gameObject.transform.Translate(new Vector3(safeAreaDiff / 2f - 16f, safeAreaDiff / -2f - 16f, 0));
+        accountButton.transform.parent.gameObject.transform.localScale = new Vector2(1.25f, 1.25f);
     }
 
     private void InitialVolumeSettings() {
@@ -187,5 +205,127 @@ public class MainMenu : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mvButton);
         return nav;
+    }
+
+    public void ShowHideAccountMenu() {
+        if (!accountMenu.activeInHierarchy) {
+            GetUsernames();
+            SizeElementsInMenu(accountMenu.gameObject);
+            shade.SetActive(true);
+            accountMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstAccountButton);
+        } else {
+            accountMenu.SetActive(false);
+            shade.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
+    }
+
+    public void ConfirmAccountChoices() {
+        if (accountCreateInput.text != "" && validUsername) {
+            PlayerPrefsController.AttemptToAddUsername(accountCreateInput.text);
+        }
+        accountCreateInput.text = "";
+        ShowHideAccountMenu();
+    }
+
+    public void CancelAccountChoices() {
+        if (accountCreateInput.text != "") {
+            accountCreateInput.text = "";
+        }
+        if (accountDropdownGO.activeInHierarchy && accountDropdown.options.Count > 0) {
+            if (PlayerPrefsController.GetCurrentUserAccount() != "") {
+                accountDropdown.value = PlayerPrefsController.currentAccountIndex;
+            } else {
+                accountDropdown.value = 0;
+            }
+        }
+    }
+
+    private void GetUsernames() {
+        List<string> usernames = PlayerPrefsController.GetUserAccounts();
+        if (usernames.Count <= 0) {
+            accountDropdownGO.SetActive(false);
+            accountCreateUsernameGO.gameObject.transform.position += new Vector3(0f, -128f, 0f);
+        } else if (usernames.Count >= 5) {
+            accountCreateUsernameGO.SetActive(false);
+            accountDropdownGO.gameObject.transform.position += new Vector3(04, 128f, 0f);
+            accountDropdown.options.Clear();
+            for (int i = 0; i < usernames.Count; i++) {
+                accountDropdown.options.Add(new TMP_Dropdown.OptionData() { text = usernames[i] });
+            }
+        } else {
+            accountDropdown.options.Clear();
+            for (int i = 0; i < usernames.Count; i++) {
+                accountDropdown.options.Add(new TMP_Dropdown.OptionData() { text = usernames[i] });
+            }
+        }
+        if (usernames.Count <= 0) {
+            ReconfigureAccountButtonNav(true);
+        } else if (usernames.Count >= 5) {
+            ReconfigureAccountButtonNav(false);
+        }
+    }
+
+    private void ReconfigureAccountButtonNav(bool noAccounts) {
+        Selectable btnTop;
+        Button btnBot = lastAccountButton.GetComponent<Button>();
+        if (noAccounts) {
+            btnTop = accountCreateUsernameGO.GetComponentInChildren<TMP_InputField>();
+        } else {
+            btnTop = accountDropdownGO.GetComponentInChildren<TMP_Dropdown>();
+        }
+        Navigation nav = new Navigation();
+        nav.mode = Navigation.Mode.Explicit;
+        nav.selectOnUp = btnBot.FindSelectableOnUp();
+        nav.selectOnDown = btnTop;
+        btnBot.navigation = nav;
+
+        nav = new Navigation();
+        nav.mode = Navigation.Mode.Explicit;
+        nav.selectOnUp = btnBot;
+        nav.selectOnDown = firstAccountButton.GetComponent<Button>();
+        btnTop.navigation = nav;
+
+        nav = new Navigation();
+        nav.mode = Navigation.Mode.Explicit;
+        nav.selectOnUp = btnTop;
+        nav.selectOnDown = firstAccountButton.GetComponent<Button>();
+        firstAccountButton.GetComponent<Button>().navigation = nav;
+    }
+
+    public void CheckForUsernameExistence() {
+        if (!accountCreateValidCheck.gameObject.activeInHierarchy) {
+            accountCreateValidCheck.gameObject.SetActive(true);
+        }
+        string username = accountCreateInput.text;
+        if (username.Length >= 3) {
+            StartCoroutine(RunCheck(username));
+        } else {
+            accountCreateValidCheck.text = "Username must be between 3 and 16 characters.";
+        }
+    }
+
+    private IEnumerator RunCheck(string username) {
+        bool localCheck = !PlayerPrefsController.CheckForUsernameExistence(username);
+        HighScores hs = FindObjectOfType<HighScores>();
+        yield return StartCoroutine(hs.CheckUsernameExists(username));
+        bool globalCheck = !hs.usernameExists;
+
+        if (localCheck && globalCheck) {
+            accountCreateValidCheck.text = "Username is valid. It will be created if you hit Confirm.";
+            validUsername = true;
+        } else {
+            accountCreateValidCheck.text = "Username is already taken. Try again.";
+            validUsername = false;
+        }
+    }
+
+    private void SizeElementsInMenu(GameObject go) {
+        Vector2 rtSizeDelta = new Vector2(Screen.width / -4f, Screen.height / -4f);
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.sizeDelta = rtSizeDelta;
     }
 }

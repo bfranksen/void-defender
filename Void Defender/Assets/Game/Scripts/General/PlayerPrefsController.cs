@@ -1,26 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerPrefsController {
 
     // Keys
+    private static List<string> USER_ACCOUNT_KEYS = new List<string>();
     private const string MUSIC_VOLUME_KEY = "musicVol";
     private const string SFX_VOLUME_KEY = "sfxVol";
-    private static string PLAYER_MOVEMENT_KEY = "playerMove";
+    private const string PLAYER_MOVEMENT_KEY = "playerMove";
     private static List<string> HIGH_SCORE_KEYS = new List<string>();
 
     // Constants
+    private const int MIN_CHARACTERS = 3;
+    private const int MAX_CHARACTERS = 16;
     private const float MIN_VOLUME = 0f;
     private const float MAX_VOLUME = 1f;
     private const int MIN_MOVEMENT = 0;
     private const int MAX_MOVEMENT = 2;
     private const int MIN_SCORE = 0;
     private const int MAX_SCORE = 999999999;
+    public static int currentAccountIndex;
 
-    public static void CreateHighScoreKeys() {
+    public static void CreateKeys() {
+        for (int i = 0; i < 5; i++) {
+            USER_ACCOUNT_KEYS.Add("user" + i);
+        }
         for (int i = 0; i < 10; i++) {
             HIGH_SCORE_KEYS.Add("highScore" + i);
+        }
+    }
+
+    public static bool AttemptToAddUsername(string username) {
+        if (CheckForUsernameExistence(username.ToUpper())) {
+            Debug.LogError("Username is already taken, unable to add.");
+            return false;
+        }
+        if (username.Length >= MIN_CHARACTERS && username.Length <= MAX_CHARACTERS) {
+            Debug.Log("Username added: " + username);
+            PlayerPrefs.SetString(USER_ACCOUNT_KEYS[GetUserAccounts().Count], username.ToUpper());
+            return true;
+        } else {
+            Debug.LogError("Username length must be in Range[" + MIN_CHARACTERS + ", " + MAX_CHARACTERS + "]: " + username);
+            return false;
         }
     }
 
@@ -69,6 +92,28 @@ public class PlayerPrefsController {
         }
     }
 
+    public static List<string> GetUserAccounts() {
+        List<string> temp = new List<string>();
+        for (int i = 0; i < 5; i++) {
+            if (HasUserAccount(i)) {
+                temp.Add(PlayerPrefs.GetString(USER_ACCOUNT_KEYS[i]));
+            }
+        }
+        return temp;
+    }
+
+    public static bool CheckForUsernameExistence(string username) {
+        return GetUserAccounts().Contains(username);
+    }
+
+    public static void SetCurrentUserAccount(int index) {
+        currentAccountIndex = index;
+    }
+
+    public static string GetCurrentUserAccount() {
+        return PlayerPrefs.GetString(USER_ACCOUNT_KEYS[currentAccountIndex]);
+    }
+
     public static float GetMusicVolume() {
         return PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY);
     }
@@ -89,6 +134,10 @@ public class PlayerPrefsController {
             }
         }
         return temp;
+    }
+
+    public static bool HasUserAccount(int index) {
+        return PlayerPrefs.HasKey(USER_ACCOUNT_KEYS[index]);
     }
 
     public static bool HasMusicVolume() {
