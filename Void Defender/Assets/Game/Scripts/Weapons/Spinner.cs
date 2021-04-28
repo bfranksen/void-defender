@@ -11,7 +11,7 @@ public class Spinner : MonoBehaviour {
 
     private void Start() {
         player = FindObjectOfType<Player>();
-        if (gameObject.tag == "Bomb" || gameObject.tag == "Blast") {
+        if (player && (gameObject.tag == "Bomb" || gameObject.tag == "Blast")) {
             RotateToFacePlayer();
         }
     }
@@ -21,7 +21,7 @@ public class Spinner : MonoBehaviour {
         if (gameObject.tag == "Blast") {
             GrowOverTime();
         }
-        if (gameObject.tag == "Fireball") {
+        if (player && gameObject.tag == "Fireball") {
             RotateToFacePlayer();
         }
     }

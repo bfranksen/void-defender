@@ -195,6 +195,7 @@ public class EnemySpawner : MonoBehaviour {
         int minimumBetweenBossWaves = 15; // 15
         int wave = baseBetweenBossWaves - Mathf.FloorToInt(minimumBetweenBossWaves * gameLengthModifier);
         nextBossWave += Random.Range(wave - 3, wave + 4);
+        // nextBossWave = baseBetweenBossWaves;
     }
 
     private void WaveCountUpdates() {

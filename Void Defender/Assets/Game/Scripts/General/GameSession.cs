@@ -27,6 +27,7 @@ public class GameSession : MonoBehaviour {
     public int Score { get => score; set => score = value; }
 
     private void Awake() {
+        PlayerPrefsController.CreateHighScoreKeys();
         SetUpSingleton();
         if (_instance = this) {
             ActivatePlatformAndLogIn();

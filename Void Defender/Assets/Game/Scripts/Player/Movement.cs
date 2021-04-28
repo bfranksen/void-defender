@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour {
     [SerializeField] GameObject innerCircle;
     [SerializeField] GameObject outerCircle;
 
-    public static string PLAYER_MOVEMENT_KEY = "playerMove";
 
     // Touch
     bool touching = false;
@@ -43,8 +42,8 @@ public class Movement : MonoBehaviour {
     public TouchConfigType TouchConfig { get => touchConfig; set => touchConfig = value; }
 
     private void Start() {
-        if (PlayerPrefs.HasKey(PLAYER_MOVEMENT_KEY)) {
-            TouchConfig = (TouchConfigType)PlayerPrefs.GetInt(PLAYER_MOVEMENT_KEY);
+        if (PlayerPrefsController.HasPlayerMovement()) {
+            TouchConfig = (TouchConfigType)PlayerPrefsController.GetPlayerMovement();
         } else {
             TouchConfig = TouchConfigType.Follow;
         }
@@ -205,8 +204,7 @@ public class Movement : MonoBehaviour {
 
     public void SetMovementModePref(int mode) {
         TouchConfig = (TouchConfigType)mode;
-        PlayerPrefs.SetInt(PLAYER_MOVEMENT_KEY, mode);
-        PlayerPrefs.Save();
+        PlayerPrefsController.SetPlayerMovement(mode);
         ResetTouchConfigEffects();
     }
 

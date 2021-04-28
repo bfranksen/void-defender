@@ -18,7 +18,7 @@ public class ProjectileCollision : MonoBehaviour {
             FindObjectOfType<MusicPlayer>().PlayOneShot(deathSFX, deathSFXVolume);
             Destroy(gameObject);
             Destroy(collider.gameObject);
-        } else if (gameObject.layer == 15 && (collider.gameObject.layer == 10 || collider.gameObject.layer == 11)) {
+        } else if (gameObject.layer == 15 && (collider.gameObject.layer == 10 || collider.gameObject.layer == 11 || collider.gameObject.layer == 14)) {
             GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation) as GameObject;
             Destroy(explosion, 1f);
             FindObjectOfType<MusicPlayer>().PlayOneShot(deathSFX, deathSFXVolume);

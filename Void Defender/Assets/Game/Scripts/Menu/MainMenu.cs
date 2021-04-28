@@ -79,7 +79,7 @@ public class MainMenu : MonoBehaviour {
     private void RepositionVolumeContainer() {
         float safeAreaDiff = Screen.height - Screen.safeArea.yMax;
         mvButton.transform.parent.gameObject.transform.Translate(new Vector3(safeAreaDiff / 2f + 32f, safeAreaDiff / -2f - 32f, 0));
-        mvButton.transform.parent.gameObject.transform.localScale = new Vector2(1.5f, 1.5f);
+        mvButton.transform.parent.gameObject.transform.localScale = new Vector2(1.25f, 1.25f);
     }
 
     private void InitialVolumeSettings() {

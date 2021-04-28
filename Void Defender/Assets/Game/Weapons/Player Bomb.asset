@@ -16,7 +16,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1667952745024342093, guid: 9f9f46f1660b3a3479fc82af8f791b0b,
     type: 3}
   projectileSpeed: 7
-  minTimeBetweenShots: 12
+  minTimeBetweenShots: 10
   maxTimeBetweenShots: 12
   sfxClip: {fileID: 8300000, guid: ec22e73f4e2d64b4aa46df89187c2335, type: 3}
-  sfxVolume: 0.75
+  sfxVolume: 0.6

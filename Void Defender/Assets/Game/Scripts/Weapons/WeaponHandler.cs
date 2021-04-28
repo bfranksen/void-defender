@@ -319,12 +319,14 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     private IEnumerator FireBlast(int index) {
-        Weapon weapon = weapons[index];
-        musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
-        GameObject blast = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, transform.rotation) as GameObject;
-        var vector = GetBombVelocityVector(weapon, bossGunPos.GetGunPosition(index).position, player.transform.position);
-        blast.GetComponent<Rigidbody2D>().velocity = vector;
-        blast.transform.parent = projectileParent.transform;
+        if (player) {
+            Weapon weapon = weapons[index];
+            musicPlayer.PlayOneShot(weapon.SfxClip, weapon.SfxVolume);
+            GameObject blast = Instantiate(weapon.ProjectilePrefab, bossGunPos.GetGunPosition(index).position, transform.rotation) as GameObject;
+            var vector = GetBombVelocityVector(weapon, bossGunPos.GetGunPosition(index).position, player.transform.position);
+            blast.GetComponent<Rigidbody2D>().velocity = vector;
+            blast.transform.parent = projectileParent.transform;
+        }
         shotCounter[index] = GetNewShotCooldown(index);
         yield return new WaitForSeconds(shotCounter[index]);
         firingCoroutines[index] = null;
