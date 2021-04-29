@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Game Over.unity
     guid: f4071787d1de5ae4b80414daefaa47dc
   - enabled: 1
+    path: Assets/Game/Scenes/Leaderboards.unity
+    guid: 5a01096cf15de214bbb51b791901a40d
+  - enabled: 1
     path: Assets/Game/Scenes/Game Manual 1.unity
     guid: e97ef762a00aa6541bd2c370f524b241
   - enabled: 1

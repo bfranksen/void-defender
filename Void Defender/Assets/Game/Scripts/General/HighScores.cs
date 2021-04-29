@@ -67,7 +67,6 @@ public class HighScores : MonoBehaviour {
 
     public IEnumerator CheckUsernameExists(string username) {
         string uri = webURL + publicCode + "/pipe-get/" + UnityWebRequest.EscapeURL(username.ToUpper());
-        print(uri);
         using (UnityWebRequest request = UnityWebRequest.Get(uri)) {
             yield return request.SendWebRequest();
 
@@ -75,7 +74,6 @@ public class HighScores : MonoBehaviour {
                 Debug.LogError("Network Error: " + request.error);
             } else { // Success
                 usernameExists = request.downloadHandler.text.Length > 0;
-                Debug.Log("Valid request. " + usernameExists);
             }
         }
     }

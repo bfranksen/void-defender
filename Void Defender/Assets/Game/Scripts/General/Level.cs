@@ -11,6 +11,10 @@ public class Level : MonoBehaviour {
         SceneManager.LoadScene("Start Menu");
     }
 
+    public void LoadLeaderboards() {
+        SceneManager.LoadScene("Leaderboards");
+    }
+
     public void LoadGameManual1() {
         SceneManager.LoadScene("Game Manual 1");
     }

@@ -17,7 +17,12 @@ public class GameOverMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        PlayerPrefsController.AttemptToAddHighScore(FindObjectOfType<GameSession>().Score);
+        int score = FindObjectOfType<GameSession>().Score;
+        PlayerPrefsController.AttemptToAddHighScore(score);
+        string username = PlayerPrefsController.GetCurrentUserAccount();
+        if (username != "") {
+            FindObjectOfType<HighScores>().AddNewHighscore(username, score);
+        }
         SetInitialObject();
         SetSizeDeltas();
 #if UNITY_ANDROID || UNITY_IOS

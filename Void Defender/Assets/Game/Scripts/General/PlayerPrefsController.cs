@@ -7,10 +7,10 @@ public class PlayerPrefsController {
 
     // Keys
     private static List<string> USER_ACCOUNT_KEYS = new List<string>();
+    private const string CURRENT_USER_KEY = "currentUser";
     private const string MUSIC_VOLUME_KEY = "musicVol";
     private const string SFX_VOLUME_KEY = "sfxVol";
     private const string PLAYER_MOVEMENT_KEY = "playerMove";
-    private static List<string> HIGH_SCORE_KEYS = new List<string>();
 
     // Constants
     private const int MIN_CHARACTERS = 3;
@@ -21,30 +21,32 @@ public class PlayerPrefsController {
     private const int MAX_MOVEMENT = 2;
     private const int MIN_SCORE = 0;
     private const int MAX_SCORE = 999999999;
-    public static int currentAccountIndex;
 
     public static void CreateKeys() {
         for (int i = 0; i < 5; i++) {
             USER_ACCOUNT_KEYS.Add("user" + i);
         }
-        for (int i = 0; i < 10; i++) {
-            HIGH_SCORE_KEYS.Add("highScore" + i);
-        }
     }
 
     public static bool AttemptToAddUsername(string username) {
-        if (CheckForUsernameExistence(username.ToUpper())) {
+        if (CheckForUsernameExistence(username)) {
             Debug.LogError("Username is already taken, unable to add.");
             return false;
         }
         if (username.Length >= MIN_CHARACTERS && username.Length <= MAX_CHARACTERS) {
             Debug.Log("Username added: " + username);
-            PlayerPrefs.SetString(USER_ACCOUNT_KEYS[GetUserAccounts().Count], username.ToUpper());
+            int index = GetUserAccounts().Count;
+            PlayerPrefs.SetString(USER_ACCOUNT_KEYS[index], username.ToUpper());
+            PlayerPrefs.SetInt(CURRENT_USER_KEY, index);
             return true;
         } else {
             Debug.LogError("Username length must be in Range[" + MIN_CHARACTERS + ", " + MAX_CHARACTERS + "]: " + username);
             return false;
         }
+    }
+
+    public static void SetCurrentUserIndex(int index) {
+        PlayerPrefs.SetInt(CURRENT_USER_KEY, index);
     }
 
     public static void SetMusicVolume(float volume) {
@@ -75,20 +77,23 @@ public class PlayerPrefsController {
     }
 
     public static void AttemptToAddHighScore(int score) {
+        if (GetUserAccounts().Count <= 0) {
+            Debug.LogError("Can't add high scores without a profile");
+            return;
+        }
         if (score >= MIN_SCORE && score <= MAX_SCORE) {
+            List<int> highScores = GetHighScores();
+            highScores.Add(score);
+            highScores.Sort((x, y) => y.CompareTo(x));
+            if (highScores.Count > 10) {
+                highScores.RemoveAt(highScores.Count - 1);
+            }
+            for (int i = 0; i < highScores.Count; i++) {
+                PlayerPrefs.SetInt(GetHighScoreKey(GetCurrentUserAccount(), i), highScores[i]);
+            }
             Debug.Log("High Score added: " + score);
         } else {
             Debug.LogError("High Score must be in Range[" + MIN_SCORE + ", " + MAX_SCORE + "]: " + score);
-        }
-
-        List<int> highScores = GetHighScores();
-        highScores.Add(score);
-        highScores.Sort((x, y) => y.CompareTo(x));
-        if (highScores.Count > 10) {
-            highScores.RemoveAt(highScores.Count - 1);
-        }
-        for (int i = 0; i < highScores.Count; i++) {
-            PlayerPrefs.SetInt(HIGH_SCORE_KEYS[i], highScores[i]);
         }
     }
 
@@ -102,16 +107,54 @@ public class PlayerPrefsController {
         return temp;
     }
 
-    public static bool CheckForUsernameExistence(string username) {
-        return GetUserAccounts().Contains(username);
-    }
 
-    public static void SetCurrentUserAccount(int index) {
-        currentAccountIndex = index;
+    public static int GetCurrentUserIndex() {
+        return PlayerPrefs.GetInt(CURRENT_USER_KEY);
     }
 
     public static string GetCurrentUserAccount() {
-        return PlayerPrefs.GetString(USER_ACCOUNT_KEYS[currentAccountIndex]);
+        if (GetUserAccounts().Count > 0) {
+            return PlayerPrefs.GetString(USER_ACCOUNT_KEYS[GetCurrentUserIndex()]);
+        } else {
+            return "";
+        }
+    }
+
+    public static string GetUserAccountByIndex(int index) {
+        return PlayerPrefs.GetString(USER_ACCOUNT_KEYS[index]);
+    }
+
+    public static bool CheckForUsernameExistence(string username) {
+        return GetUserAccounts().Contains(username.ToUpper());
+    }
+
+    public static bool DeleteUserAccount(int index) {
+        if (HasUserAccount(index)) {
+            DeleteUserAccountHighScores(index);
+            PlayerPrefs.DeleteKey(USER_ACCOUNT_KEYS[index]);
+            for (int i = index; i < 5; i++) {
+                if (HasUserAccount(i + 1)) {
+                    PlayerPrefs.SetString(USER_ACCOUNT_KEYS[i], GetUserAccountByIndex(i + 1));
+                } else {
+                    PlayerPrefs.DeleteKey(USER_ACCOUNT_KEYS[i]);
+                    break;
+                }
+            }
+            if (GetCurrentUserIndex() >= index) {
+                SetCurrentUserIndex(GetCurrentUserIndex() - 1);
+            }
+            return true;
+        } else {
+            Debug.Log("User account doesn't exist. Can't delete.");
+            return false;
+        }
+    }
+
+    private static void DeleteUserAccountHighScores(int index) {
+        string username = GetUserAccountByIndex(index);
+        for (int i = 0; i < 10; i++) {
+            PlayerPrefs.DeleteKey(GetHighScoreKey(username, i));
+        }
     }
 
     public static float GetMusicVolume() {
@@ -127,17 +170,24 @@ public class PlayerPrefsController {
     }
 
     public static List<int> GetHighScores() {
-        List<int> temp = new List<int>();
-        for (int i = 0; i < 10; i++) {
-            if (HasHighScore(i)) {
-                temp.Add(PlayerPrefs.GetInt(HIGH_SCORE_KEYS[i]));
+        if (GetCurrentUserAccount() != "") {
+            List<int> temp = new List<int>();
+            for (int i = 0; i < 10; i++) {
+                if (HasHighScore(i)) {
+                    temp.Add(PlayerPrefs.GetInt(GetHighScoreKey(GetCurrentUserAccount(), i)));
+                }
             }
+            return temp;
+        } else {
+            return null;
         }
-        return temp;
     }
 
     public static bool HasUserAccount(int index) {
-        return PlayerPrefs.HasKey(USER_ACCOUNT_KEYS[index]);
+        if (USER_ACCOUNT_KEYS.Count - index > 0) {
+            return PlayerPrefs.HasKey(USER_ACCOUNT_KEYS[index]);
+        }
+        return false;
     }
 
     public static bool HasMusicVolume() {
@@ -153,6 +203,10 @@ public class PlayerPrefsController {
     }
 
     public static bool HasHighScore(int index) {
-        return PlayerPrefs.HasKey(HIGH_SCORE_KEYS[index]);
+        return PlayerPrefs.HasKey(GetHighScoreKey(GetCurrentUserAccount(), index));
+    }
+
+    private static string GetHighScoreKey(string username, int index) {
+        return username + "highScore" + index;
     }
 }

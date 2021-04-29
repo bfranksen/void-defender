@@ -19,7 +19,6 @@ public class GameSession : MonoBehaviour {
 #endif
 
     // PLAYER INFO
-    private string username;
     private int health = 200;
     private int lives = 2;
     private int score = 0;
