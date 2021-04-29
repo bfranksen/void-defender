@@ -53,15 +53,14 @@ public class MainMenu : MonoBehaviour {
         exitButton.SetActive(!reconfigure);
         if (reconfigure) {
             Button btn = beforeExitButton.GetComponent<Button>();
-            Navigation nav = new Navigation();
+            Navigation nav = btn.navigation;
             nav.mode = Navigation.Mode.Explicit;
             nav.selectOnUp = btn.FindSelectableOnUp();
             nav.selectOnDown = mvButton.GetComponent<Button>();
             btn.navigation = nav;
 
             btn = mvButton.GetComponent<Button>();
-            nav = new Navigation();
-            nav.mode = Navigation.Mode.Explicit;
+            nav = btn.navigation;
             nav.selectOnUp = beforeExitButton.GetComponent<Button>();
             nav.selectOnDown = btn.FindSelectableOnDown();
             btn.navigation = nav;
@@ -134,7 +133,7 @@ public class MainMenu : MonoBehaviour {
             delayLeft -= Time.deltaTime;
         }
         if (delayLeft <= 0) {
-            if (sliderContainer.activeInHierarchy && (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Return))) {
+            if (sliderContainer.activeInHierarchy && (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.Return))) {
                 initialMusicVolume = volumeSlider.value;
                 SaveVolumeChanges(true);
                 ShowHideSlider();
@@ -162,14 +161,14 @@ public class MainMenu : MonoBehaviour {
 
     public void ShowHideSlider() {
         delayLeft = delay;
-        Navigation nav = new Navigation();
-        nav.mode = Navigation.Mode.Explicit;
+        Button button = mvButton.GetComponent<Button>();
+        Navigation nav = button.navigation;
         if (!sliderContainer.activeInHierarchy) {
             nav = Show(nav);
         } else {
             nav = Hide(nav);
         }
-        mvButton.GetComponent<Button>().navigation = nav;
+        button.navigation = nav;
     }
 
     private Navigation Show(Navigation nav) {

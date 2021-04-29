@@ -28,7 +28,7 @@ public class LocalHighScoreDisplay : MonoBehaviour {
             for (int i = 0; i < 10; i++) {
                 highScoreTexts[i].text = "-----";
             }
-            Debug.LogError("Must have a profile to track high scores");
+            Debug.LogWarning("Must have a profile to track high scores");
         }
     }
 

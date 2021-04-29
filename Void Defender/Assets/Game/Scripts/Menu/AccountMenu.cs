@@ -44,20 +44,8 @@ public class AccountMenu : MonoBehaviour {
     Coroutine alreadySelectedCoroutine;
 
     private void Update() {
-        // ResetCurrentSelected();
         HandleOpenCloseFromInput();
     }
-
-    // private void ResetCurrentSelected() {
-    //     GameObject selected = EventSystem.current.currentSelectedGameObject;
-    //     if (selected != recentSelectedObject) {
-    //         lastSelectedObject = recentSelectedObject;
-    //         recentSelectedObject = selected;
-    //     }
-    //     if (!selected) {
-    //         EventSystem.current.SetSelectedGameObject(lastSelectedObject);
-    //     }
-    // }
 
     private void HandleOpenCloseFromInput() {
         if (!newProfileMenu.activeInHierarchy && (Input.GetButtonDown("Pause") || (profilesMenu.activeInHierarchy && Input.GetButtonDown("Cancel")))) {
@@ -114,7 +102,6 @@ public class AccountMenu : MonoBehaviour {
     }
 
     private void GetUsernames() {
-        // Debug.Log("Current Account: " + PlayerPrefsController.GetCurrentUserAccount() + "  -  Index: " + PlayerPrefsController.GetCurrentUserIndex());
         List<string> usernames = PlayerPrefsController.GetUserAccounts();
         if (usernames.Count <= 0) {
             needProfileText.gameObject.SetActive(true);
@@ -277,8 +264,8 @@ public class AccountMenu : MonoBehaviour {
         bool localCheck = !PlayerPrefsController.CheckForUsernameExistence(username);
         HighScores hs = FindObjectOfType<HighScores>();
         yield return StartCoroutine(hs.CheckUsernameExists(username));
+        yield return new WaitForSeconds(0.5f);
         bool globalCheck = !hs.usernameExists;
-        // Debug.Log("Local Check: " + localCheck + "  -  Global Check: " + globalCheck);
         if (localCheck && globalCheck) {
             profileCreateValidCheck.text = "Valid username. It will be created if you hit confirm.";
             validUsername = true;
@@ -287,31 +274,6 @@ public class AccountMenu : MonoBehaviour {
             validUsername = false;
         }
     }
-
-    // public void SetCurrentAccountColors(int numUsers) {
-    //     for (int i = 0; i < numUsers; i++) {
-    //         if (i == PlayerPrefsController.GetCurrentUserIndex()) {
-    //             ColorSwitch(userAccounts[i], true);
-    //         } else {
-    //             ColorSwitch(userAccounts[i], false);
-    //         }
-    //     }
-    // }
-
-    // private void ColorSwitch(GameObject account, bool orangeNeeded) {
-    //     account.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = orangeNeeded ? (Color)appOrange : Color.white;
-    //     account.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = orangeNeeded ? (Color)appOrange : Color.white;
-
-    //     ColorBlock colors = new ColorBlock();
-    //     colors.normalColor = orangeNeeded ? (Color)appOrange : Color.white;
-    //     colors.highlightedColor = orangeNeeded ? Color.white : (Color)appOrange;
-    //     colors.selectedColor = orangeNeeded ? Color.white : (Color)appOrange;
-    //     colors.pressedColor = orangeNeeded ? Color.white : (Color)appOrange;
-    //     colors.disabledColor = Color.grey;
-    //     colors.colorMultiplier = 1f;
-    //     account.transform.GetChild(2).GetComponent<Button>().colors = colors;
-    //     account.transform.GetChild(3).GetComponent<Button>().colors = colors;
-    // }
 
     public void ShowConfirmSelect(int index) {
         if (index == PlayerPrefsController.GetCurrentUserIndex()) {

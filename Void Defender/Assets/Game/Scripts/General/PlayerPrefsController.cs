@@ -23,6 +23,7 @@ public class PlayerPrefsController {
     private const int MAX_SCORE = 999999999;
 
     public static void CreateKeys() {
+        // SetCurrentUserIndex(0);
         for (int i = 0; i < 5; i++) {
             USER_ACCOUNT_KEYS.Add("user" + i);
         }
@@ -141,7 +142,7 @@ public class PlayerPrefsController {
                 }
             }
             if (GetCurrentUserIndex() >= index) {
-                SetCurrentUserIndex(GetCurrentUserIndex() - 1);
+                SetCurrentUserIndex(index == 0 ? 0 : GetCurrentUserIndex() - 1);
             }
             return true;
         } else {

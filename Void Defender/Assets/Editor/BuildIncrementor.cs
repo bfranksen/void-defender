@@ -41,7 +41,8 @@ public class BuildIncrementor : IPreprocessBuildWithReport {
         bool minorSuccess = int.TryParse(Application.version.Split('.')[1], out minor);
         build = PlayerSettings.Android.bundleVersionCode;
         if (majorSuccess && minorSuccess) {
-            version = major * 1000 + minor * 100 + build;
+            // version = major * 1000 + minor * 100 + build;
+            version = build;
         }
         if (version != -1) {
             PlayerSettings.Android.bundleVersionCode = version;

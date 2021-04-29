@@ -56,13 +56,22 @@ public class GlobalHighScoresDisplay : MonoBehaviour {
 
     private List<Highscore> GetScoresToShow(List<Highscore> highscoresList) {
         List<Highscore> scoresToShow = new List<Highscore>(highscoresList.GetRange(GetPageIndex(), Mathf.Min(highscoresList.Count - GetPageIndex(), 10)));
-        foreach (Highscore hs in scoresToShow) {
-            print(hs.place + ". " + hs.username + " - " + hs.score);
-        }
+        // foreach (Highscore hs in scoresToShow) {
+        //     print(hs.place + ". " + hs.username + " - " + hs.score);
+        // }
         return scoresToShow;
     }
 
     public void ShowYourScorePage() {
+        string username = PlayerPrefsController.GetCurrentUserAccount();
+        if (username != "") {
+            foreach (Highscore hs in highscoresList) {
+                if (hs.username == username) {
+                    currentPage = Mathf.FloorToInt(hs.place / 10f);
+                    break;
+                }
+            }
+        }
         CreateHighscoreRows();
     }
 

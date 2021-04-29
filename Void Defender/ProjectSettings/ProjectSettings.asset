@@ -128,7 +128,7 @@ PlayerSettings:
     16:10: 0
     16:9: 0
     Others: 1
-  bundleVersion: 0.3
+  bundleVersion: 0.4
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -174,9 +174,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.BeeneticGames.VoidDefender
   buildNumber:
-    Standalone: 17
-    iPhone: 17
-  AndroidBundleVersionCode: 17
+    Standalone: 3
+    iPhone: 3
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0

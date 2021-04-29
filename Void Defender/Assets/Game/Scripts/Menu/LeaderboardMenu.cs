@@ -18,6 +18,9 @@ public class LeaderboardMenu : MonoBehaviour {
     }
 
     private void Update() {
+        if (Input.GetButtonDown("Cancel")) {
+            firstButton.GetComponent<Button>().onClick.Invoke();
+        }
         ResetCurrentSelected();
     }
 

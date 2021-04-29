@@ -13,6 +13,10 @@ public class HighScores : MonoBehaviour {
     public bool usernameExists = false;
 
     private void Awake() {
+        // Quick population of leaderboards
+        // for (int i = 0; i < 32; i++) {
+        //     AddNewHighscore("jack" + i, 135 * i);
+        // }
         highscoresList = new List<Highscore>();
         highScoresDisplay = GetComponent<GlobalHighScoresDisplay>();
     }
