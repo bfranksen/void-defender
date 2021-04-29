@@ -17,7 +17,6 @@ public class HighScores : MonoBehaviour {
         // for (int i = 0; i < 32; i++) {
         //     AddNewHighscore("jack" + i, 135 * i);
         // }
-        highscoresList = new List<Highscore>();
         highScoresDisplay = GetComponent<GlobalHighScoresDisplay>();
     }
 
@@ -59,6 +58,7 @@ public class HighScores : MonoBehaviour {
 
     private void FormatHighScores(string textStream) {
         string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        highscoresList = new List<Highscore>();
 
         for (int i = 0; i < entries.Length; i++) {
             string[] entryInfo = entries[i].Split(new char[] { '|' });

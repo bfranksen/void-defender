@@ -13,7 +13,7 @@ public class GlobalHighScoresDisplay : MonoBehaviour {
     HighScores highscoreManager;
     int currentPage = 0;
 
-    void Start() {
+    private void Start() {
         highscoreTexts = new List<GameObject>();
         offsetVector = new Vector3(0f, 58f, 0f);
         currentPos = highscoreTemplate.transform.position;
@@ -40,6 +40,7 @@ public class GlobalHighScoresDisplay : MonoBehaviour {
 
     public void CreateHighscoreRows() {
         List<Highscore> scoresToShow = GetScoresToShow(highscoresList);
+        Debug.Log("Downloaded Data: " + highscoresList.Count + "  -  Parsed Data: " + scoresToShow.Count);
         for (int i = 0; i < scoresToShow.Count; i++) {
             highscoreTexts[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = scoresToShow[i].place.ToString() + ".";
             highscoreTexts[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = scoresToShow[i].username;
@@ -105,7 +106,7 @@ public class GlobalHighScoresDisplay : MonoBehaviour {
     IEnumerator RefreshHighScores() {
         while (true) {
             highscoreManager.GetHighScores();
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(60f); // 30s
         }
     }
 }
