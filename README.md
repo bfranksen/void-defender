@@ -17,4 +17,4 @@ Using a controller is the best experience for Void Defender. Keyboard+mouse cont
 - Left Bumper (LB): First press enables aiming of secondary weapon. Second press fires the weapon.
 
 
-<img src="https://github.com/bfranksen/void-defender/blob/development/Void-Defender-Menu-SS.png?raw=true" width="225" height="400">   <img src="https://github.com/bfranksen/void-defender/blob/development/Void-Defender-Gameplay-SS.png?raw=true" width="225" height="400">   <img src="https://github.com/bfranksen/void-defender/blob/development/Void-Defender-Boss-SS.png?raw=true" width="225" height="400">
+<img src="https://github.com/bfranksen/void-defender-src/blob/master/Void-Defender-Menu-SS.png?raw=true" width="225" height="400">   <img src="https://github.com/bfranksen/void-defender-src/blob/master/Void-Defender-Gameplay-SS.png?raw=true" width="225" height="400">   <img src="https://github.com/bfranksen/void-defender-src/blob/master/Void-Defender-Boss-SS.png?raw=true" width="225" height="400">
