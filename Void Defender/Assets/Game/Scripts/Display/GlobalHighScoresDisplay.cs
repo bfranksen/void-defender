@@ -40,7 +40,6 @@ public class GlobalHighScoresDisplay : MonoBehaviour {
 
     public void CreateHighscoreRows() {
         List<Highscore> scoresToShow = GetScoresToShow(highscoresList);
-        Debug.Log("Downloaded Data: " + highscoresList.Count + "  -  Parsed Data: " + scoresToShow.Count);
         for (int i = 0; i < scoresToShow.Count; i++) {
             highscoreTexts[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = scoresToShow[i].place.ToString() + ".";
             highscoreTexts[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = scoresToShow[i].username;
