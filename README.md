@@ -4,8 +4,8 @@ Void Defender is a vertically scrolling space shooter created in Unity's 2D engi
 
 ## How to Play
 
-- Install the game using void_defender_setup.exe in the releases section. There will be an executable application file wherever you decide to install the game.
-- Download the source code zip under Code. Unzip the folder into a location of your choosing. Now, open the Builds folder and select the most recent version. Finally, open the file named Void Defender and voila.
+- Install the game using void_defender_setup.exe from the most recent release in the releases section. There will be an executable application file wherever you decide to install the game.
+- Download the source code zip under Code. Unzip the folder into a location of your choosing. Now, open the Builds folder and select the most recent version (bigger is better). Finally, open the file named Void Defender and voila.
 
 ## Controls
 
