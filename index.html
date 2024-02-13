@@ -9,32 +9,48 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 50px;
             text-align: center;
         }
         h1 {
             color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
         }
         p {
             color: #666;
+            font-size: 18px;
             margin-top: 20px;
+            line-height: 1.6;
         }
         .cta-button {
             display: inline-block;
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 5px;
             text-decoration: none;
-            margin-top: 20px;
+            margin-top: 30px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
         }
         .cta-button:hover {
             background-color: #0056b3;
+        }
+        .privacy-link {
+            font-size: 14px;
+            color: #999;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+        }
+        .privacy-link:hover {
+            color: #666;
         }
     </style>
 </head>
@@ -44,7 +60,7 @@
     <h1>Personal Scribe</h1>
     <p>Your Note-Taking Companion</p>
     <a href="#" class="cta-button">Get Started</a>
-    <p><a href="privacy_policy.html">Privacy Policy</a></p>
+    <a href="privacy_policy.html" class="privacy-link">Privacy Policy</a>
 </div>
 
 </body>
